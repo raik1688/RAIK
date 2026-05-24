@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Strategic Investment Plan - CMYK Ecosystem Blueprint</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Inter"', 'system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'sans-serif'],
+          },
+          colors: {
+            slate: {
+              950: '#070a13',
+            },
+            accent: {
+              emerald: '#059669',
+              cyan: '#0891b2',
+              indigo: '#4f46e5',
+              violet: '#7c3aed',
+            }
+          },
+          animation: {
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'flow-x': 'flowX 2s linear infinite',
+            'spin-slow': 'spin 12s linear infinite',
+          },
+          keyframes: {
+            flowX: {
+              '0%': { transform: 'translateX(-100%)' },
+              '100%': { transform: 'translateX(100%)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Hide scrollbars */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    /* Slide transition */
+    .slide-container {
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    /* Premium light ambient glows */
+    .aurora-glow {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(79, 70, 229, 0.05) 0%, rgba(8, 145, 178, 0.02) 50%, rgba(0,0,0,0) 100%);
+      filter: blur(60px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .aurora-glow-emerald {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(5, 150, 105, 0.04) 0%, rgba(79, 70, 229, 0.01) 60%, rgba(0,0,0,0) 100%);
+      filter: blur(80px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* 
+       Advanced blending filter: 
+       Increases contrast and brightness slightly to push any off-white/light-gray background of the logo to pure #ffffff white, 
+       allowing 'multiply' to perform 100% clean, borderless transparency.
+    */
+    .logo-filter {
+      mix-blend-mode: multiply;
+      filter: contrast(1.15) brightness(1.05);
+      opacity: 0.98;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans h-screen w-screen overflow-hidden flex flex-col selection:bg-indigo-100 selection:text-indigo-900">
+
+  <!-- Top Navigation Bar -->
+  <header class="h-16 border-b border-slate-200 bg-white/80 backdrop-blur-md px-6 flex justify-between items-center z-50">
+    <div class="flex items-center space-x-3">
+      <!-- High-tech gradient icon -->
+      <div class="relative flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 via-blue-500 to-cyan-500 shadow-md">
+        <i class="fa-solid fa-chart-line text-white text-lg"></i>
+      </div>
+      <div>
+        <span class="font-extrabold text-slate-900 text-base tracking-wide uppercase">CMYK Investments</span>
+        <p class="text-[10px] text-slate-500 font-semibold tracking-wider">PORTFOLIO BLUEPRINT</p>
+      </div>
+    </div>
+
+    <!-- Center Controls: Mode Toggle & Slide Selector -->
+    <div class="flex items-center space-x-4">
+      <div class="hidden md:flex bg-slate-100 p-1 rounded-lg border border-slate-200 text-xs">
+        <button id="btnModeSlide" onclick="setMode('slide')" class="px-3 py-1.5 rounded-md font-semibold bg-white text-slate-900 transition-all shadow-sm flex items-center space-x-1 border border-slate-200">
+          <i class="fa-solid fa-desktop"></i> <span>Presentation Mode</span>
+        </button>
+        <button id="btnModeScroll" onclick="setMode('scroll')" class="px-3 py-1.5 rounded-md font-semibold text-slate-500 hover:text-slate-900 transition-all flex items-center space-x-1">
+          <i class="fa-solid fa-arrows-up-down"></i> <span>Scroll View</span>
+        </button>
+      </div>
+      
+      <!-- Slide Quick Selector -->
+      <select id="slideSelector" onchange="jumpToSlide(this.value)" class="bg-white border border-slate-200 text-xs text-slate-700 rounded-lg px-3 py-1.5 focus:outline-none focus:border-indigo-500 transition-all cursor-pointer shadow-sm">
+        <!-- JS dynamically populates -->
+      </select>
+    </div>
+
+    <!-- Right Side: Brand Badge with White Theme Style -->
+    <div class="flex items-center space-x-3">
+      <button class="relative group px-4 py-1.5 text-xs font-semibold rounded-full overflow-hidden transition-all duration-300 active:scale-95 shadow-sm border border-slate-200 bg-white hover:bg-slate-50">
+        <span class="relative z-10 flex items-center space-x-1.5 text-slate-700">
+          <i class="fa-solid fa-wand-magic-sparkles text-indigo-500 animate-pulse"></i>
+          <span>AI 簡報大師</span>
+        </span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Display Area -->
+  <main class="flex-1 overflow-hidden relative flex">
+    
+    <!-- Sidebar Navigation for Presentation Mode -->
+    <aside id="sidebarNav" class="hidden lg:flex flex-col w-64 border-r border-slate-200 bg-white p-4 overflow-y-auto no-scrollbar space-y-2">
+      <p class="text-[11px] font-bold text-slate-400 tracking-wider uppercase px-2 mb-2">INDEX / SLIDES</p>
+      <!-- JS dynamically populates items -->
+    </aside>
+
+    <!-- Slide Viewport -->
+    <div id="slideViewport" class="flex-1 h-full w-full overflow-hidden relative bg-white">
+      
+      <!-- Ambient Glow Elements -->
+      <div class="aurora-glow -top-40 -left-40"></div>
+      <div class="aurora-glow-emerald -bottom-40 -right-40"></div>
+
+      <!-- NotebookLM Watermark (Persistent overlay at bottom right) -->
+      <div class="absolute bottom-6 right-6 z-40 pointer-events-none select-none opacity-80 flex items-center space-x-1 bg-white/90 backdrop-blur border border-slate-200 px-3 py-1.5 rounded-lg shadow-sm">
+        <svg class="h-4 w-auto" viewBox="0 0 120 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="4" width="18" height="22" rx="3" fill="url(#notebookGradWatermark)" />
+          <path d="M7 9h8M7 13h8M7 17h5" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+          <text x="26" y="20" fill="#0f172a" font-family="'Inter', sans-serif" font-weight="700" font-size="13" letter-spacing="-0.3">Notebook<tspan fill="#0284c7" font-weight="800">LM</tspan></text>
+          <defs>
+            <linearGradient id="notebookGradWatermark" x1="0" y1="0" x2="20" y2="26" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#4f46e5" />
+              <stop offset="100%" stop-color="#2563eb" />
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+
+      <!-- Track of Slides -->
+      <div id="slideTrack" class="slide-container flex h-full w-full">
+        
+        <!-- ==================== SLIDE 1 ==================== -->
+        <!-- Forced bg-white and high z-index to block background gradients behind the top-left logo -->
+        <section class="w-full h-full flex-shrink-0 flex items-center justify-center p-6 md:p-12 relative bg-white z-10">
+          <!-- LOGO positioned exactly at the TOP-LEFT corner of Slide 1 with responsive size -->
+          <div class="absolute top-6 left-6 md:top-12 md:left-12 flex items-center z-20">
+            <img src="image_11f689.png" 
+                 class="h-10 md:h-14 w-auto object-contain logo-filter transition-all duration-300" 
+                 alt="SAM Logo">
+          </div>
+
+          <div class="max-w-4xl text-center space-y-6 relative z-10 flex flex-col items-center">
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-indigo-50 text-indigo-600 border border-indigo-100">
+              <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 mr-2"></span>
+              2026 STRATEGIC INITIATIVE
+            </span>
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight leading-none text-slate-900">
+              Strategic
+              <span class="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-accent-indigo via-accent-cyan to-accent-emerald">Investment Plan</span>
+            </h1>
+            <p class="text-lg md:text-xl text-slate-500 font-light max-w-2xl mx-auto leading-relaxed">
+              Building a Scalable Ecosystem: From Cash Flow to Industrial Integration
+            </p>
+            <div class="pt-6 flex justify-center">
+              <button onclick="nextSlide()" class="px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold transition-all shadow-md flex items-center space-x-2">
+                <span>Start Presentation</span> <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== SLIDE 2 ==================== -->
+        <section class="w-full h-full flex-shrink-0 flex items-center justify-center p-6 md:p-12">
+          <div class="max-w-5xl w-full space-y-8 relative z-10">
+            <div class="border-l-4 border-indigo-600 pl-4">
+              <p class="text-xs font-semibold text-indigo-600 tracking-wider uppercase">Strategic Philosophy</p>
+              <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900 mt-1">Beyond Single-Project Returns</h2>
+            </div>
+            
+            <p class="text-slate-600 leading-relaxed max-w-3xl">
+              Establishing a scalable investment platform that deliberately balances cash-flow assets, equity investments, integration, and industrial integration, and future technology opportunities.
+            </p>
+
+            <!-- 4 Core Pillars of Scalability -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-6">
+              <div class="bg-white border border-slate-200 p-5 rounded-2xl hover:border-indigo-500/50 transition-all hover:translate-y-[-4px] hover:shadow-md group">
+                <div class="w-10 h-10 rounded-xl bg-indigo-50 flex items-center justify-center text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all mb-4">
+                  <span class="font-bold">01</span>
+                </div>
+                <h3 class="font-bold text-slate-900 text-base group-hover:text-indigo-600 transition-colors">Capital Integration</h3>
+                <p class="text-slate-500 text-xs mt-2 leading-relaxed">Securing robust starting capital with seamless global funding channels.</p>
+              </div>
+              <div class="bg-white border border-slate-200 p-5 rounded-2xl hover:border-indigo-500/50 transition-all hover:translate-y-[-4px] hover:shadow-md group">
+                <div class="w-10 h-10 rounded-xl bg-indigo-50 flex items-center justify-center text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all mb-4">
+                  <span class="font-bold">02</span>
+                </div>
+                <h3 class="font-bold text-slate-900 text-base group-hover:text-indigo-600 transition-colors">Investment Management</h3>
+                <p class="text-slate-500 text-xs mt-2 leading-relaxed">Applying rigorous risk control to ensure highly efficient capital allocation and returns.</p>
+              </div>
+              <div class="bg-white border border-slate-200 p-5 rounded-2xl hover:border-indigo-500/50 transition-all hover:translate-y-[-4px] hover:shadow-md group">
+                <div class="w-10 h-10 rounded-xl bg-indigo-50 flex items-center justify-center text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all mb-4">
+                  <span class="font-bold">03</span>
+                </div>
+                <h3 class="font-bold text-slate-900 text-base group-hover:text-indigo-600 transition-colors">Industry Development</h3>
+                <p class="text-slate-500 text-xs mt-2 leading-relaxed">Engaging deep vertical integration to construct absolute competitive barriers.</p>
+              </div>
+              <div class="bg-white border border-slate-200 p-5 rounded-2xl hover:border-indigo-500/50 transition-all hover:translate-y-[-4px] hover:shadow-md group">
+                <div class="w-10 h-10 rounded-xl bg-indigo-50 flex items-center justify-center text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all mb-4">
+                  <span class="font-bold">04</span>
+                </div>
+                <h3 class="font-bold text-slate-900 text-base group-hover:text-indigo-600 transition-colors">Asset Accumulation</h3>
+                <p class="text-slate-500 text-xs mt-2 leading-relaxed">Converting active business operations into premium, compounding long-term assets.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== SLIDE 3 ==================== -->
+        <section class="w-full h-full flex-shrink-0 flex items-center justify-center p-6 md:p-12">
+          <div class="max-w-5xl w-full space-y-6 relative z-10">
+            <div class="border-l-4 border-emerald-600 pl-4">
+              <p class="text-xs font-semibold text-emerald-600 tracking-wider uppercase">Strategic Blueprint</p>
+              <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900 mt-1">The Three-Horizon Strategic Blueprint</h2>
+            </div>
+
+            <!-- Dynamic Horizon Comparison Matrix -->
+            <div class="bg-slate-100/60 border border-slate-200 rounded-2xl p-6 backdrop-blur">
+              <div class="flex border-b border-slate-200 pb-4 mb-4 space-x-2 overflow-x-auto no-scrollbar">
+                <button onclick="setActiveHorizon(1)" id="hzTab1" class="px-4 py-2 rounded-xl text-sm font-semibold bg-white text-indigo-600 border border-indigo-200 shadow-sm whitespace-nowrap transition-all duration-300">
+                  Horizon 1: Short-Term
+                </button>
+                <button onclick="setActiveHorizon(2)" id="hzTab2" class="px-4 py-2 rounded-xl text-sm font-semibold text-slate-500 hover:text-slate-900 whitespace-nowrap transition-all duration-300">
+                  Horizon 2: Mid-Term
+                </button>
+                <button onclick="setActiveHorizon(3)" id="hzTab3" class="px-4 py-2 rounded-xl text-sm font-semibold text-slate-500 hover:text-slate-900 whitespace-nowrap transition-all duration-300">
+                  Horizon 3: Long-Term
+                </button>
+              </div>
+
+              <!-- Dynamically rendered Horizon contents strictly matching Slide 3 table -->
+              <div id="horizonContent" class="space-y-4 transition-all duration-500 min-h-[220px]">
+                <!-- JS Injectable -->
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== SLIDE 4 ==================== -->
+        <section class="w-full h-full flex-shrink-0 flex items-center justify-center p-6 md:p-12">
+          <div class="max-w-5xl w-full grid grid-cols-1 md:grid-cols-2 gap-8 items-center relative z-10">
+            <div class="space-y-6">
+              <div class="border-l-4 border-cyan-600 pl-4">
+                <p class="text-xs font-semibold text-cyan-600 tracking-wider uppercase">Horizon 1 | Securing Cash Flow</p>
+                <h2 class="text-2xl md:text-4xl font-extrabold text-slate-900 mt-1">Horizon 1 | Securing Stable Cash Flow</h2>
+              </div>
+              
+              <div class="space-y-4 text-slate-600 text-sm md:text-base leading-relaxed">
+                <div class="bg-white border border-slate-200 p-5 rounded-xl shadow-sm">
+                  <span class="text-cyan-600 font-bold text-base uppercase tracking-wider block mb-1">Core Strategy</span>
+                  <p class="text-slate-600">Prioritize targets with stable market demand, predictable income, and low risk to fund future ecosystem expansion.</p>
+                </div>
+                <div class="bg-white border border-slate-200 p-5 rounded-xl shadow-sm">
+                  <span class="text-cyan-600 font-bold text-base uppercase tracking-wider block mb-1">The Operational Rule</span>
+                  <p class="text-slate-600">Full self-operation is not required at the initial stage. Execution relies heavily on joint ventures and outsourced professional management to minimize early-stage operational drag.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Decorative Asset Deployment Visual Loop -->
+            <div class="relative bg-gradient-to-br from-indigo-50 to-cyan-50 border border-slate-200 p-8 rounded-3xl overflow-hidden flex flex-col justify-between min-h-[300px] shadow-sm">
+              <div class="absolute top-0 right-0 w-32 h-32 bg-cyan-100/30 rounded-full blur-3xl"></div>
+              <div class="flex justify-between items-start">
+                <span class="text-slate-400 text-xs font-bold uppercase tracking-wider">H1 Operational Loop</span>
+                <i class="fa-solid fa-shield-halved text-cyan-600 text-2xl"></i>
+              </div>
+              <div class="space-y-4 my-6">
+                <div class="flex items-center space-x-3 text-sm text-slate-700">
+                  <span class="w-6 h-6 rounded-full bg-cyan-100 text-cyan-600 flex items-center justify-center font-bold text-xs">1</span>
+                  <span>Identify highly stable yield targets</span>
+                </div>
+                <div class="flex items-center space-x-3 text-sm text-slate-700">
+                  <span class="w-6 h-6 rounded-full bg-cyan-100 text-cyan-600 flex items-center justify-center font-bold text-xs">2</span>
+                  <span>Delegate to JV / Professional Managers</span>
+                </div>
+                <div class="flex items-center space-x-3 text-sm text-slate-700">
+                  <span class="w-6 h-6 rounded-full bg-cyan-100 text-cyan-600 flex items-center justify-center font-bold text-xs">3</span>
+                  <span>Reinvest reliable cash flow streams</span>
+                </div>
+              </div>
+              <div class="text-[11px] text-slate-400 text-right uppercase tracking-wider font-semibold">Optimize ROI • Mitigate Operational Drag</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== SLIDE 5 ==================== -->
+        <section class="w-full h-full flex-shrink-0 flex items-center justify-center p-6 md:p-12">
+          <div class="max-w-5xl w-full space-y-6 relative z-10">
+            <div class="border-l-4 border-indigo-600 pl-4">
+              <p class="text-xs font-semibold text-indigo-600 tracking-wider uppercase">Horizon 1 | Core Assets</p>
+              <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900 mt-1">Core Cash-Flow Assets</h2>
+            </div>
+
+            <!-- Core Cash-Flow Assets Grid (Strictly from PDF Page 5) -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+              
+              <!-- Accommodations -->
+              <div class="bg-white border border-slate-200 p-5 rounded-2xl flex flex-col justify-between hover:border-indigo-500 hover:shadow-md transition-all group">
+                <div>
+                  <div class="w-12 h-12 rounded-xl bg-indigo-50 flex items-center justify-center text-indigo-600 mb-4 group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-hotel text-xl"></i>
+                  </div>
+                  <h3 class="font-bold text-slate-900 text-lg">Accommodations</h3>
+                  <p class="text-xs text-slate-500 mt-2 leading-relaxed">Hotels and hostels targeting tourism, business districts, transportation hubs, and medical zones.</p>
+                </div>
+                <span class="text-[10px] text-indigo-600 font-bold tracking-wider uppercase mt-4 block">Targeted Demands</span>
+              </div>
+
+              <!-- Pet Economy -->
+              <div class="bg-white border border-slate-200 p-5 rounded-2xl flex flex-col justify-between hover:border-emerald-500 hover:shadow-md transition-all group">
+                <div>
+                  <div class="w-12 h-12 rounded-xl bg-emerald-50 flex items-center justify-center text-emerald-600 mb-4 group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-paw text-xl"></i>
+                  </div>
+                  <h3 class="font-bold text-slate-900 text-lg">Pet Economy</h3>
+                  <p class="text-xs text-slate-500 mt-2 leading-relaxed">Pet hotels, grooming, and daycare in urban/high-income areas. Highly stable growth and recurring revenue.</p>
+                </div>
+                <span class="text-[10px] text-emerald-600 font-bold tracking-wider uppercase mt-4 block">High Stickiness</span>
+              </div>
+
+              <!-- Commercial Property -->
+              <div class="bg-white border border-slate-200 p-5 rounded-2xl flex flex-col justify-between hover:border-cyan-500 hover:shadow-md transition-all group">
+                <div>
+                  <div class="w-12 h-12 rounded-xl bg-cyan-50 flex items-center justify-center text-cyan-600 mb-4 group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-building text-xl"></i>
+                  </div>
+                  <h3 class="font-bold text-slate-900 text-lg">Commercial Property</h3>
+                  <p class="text-xs text-slate-500 mt-2 leading-relaxed">Leasing for traditional offices, shared workspaces, clinic spaces, and training rooms.</p>
+                </div>
+                <span class="text-[10px] text-cyan-600 font-bold tracking-wider uppercase mt-4 block">Fixed Income</span>
+              </div>
+
+              <!-- Strategic Equities -->
+              <div class="bg-white border border-slate-200 p-5 rounded-2xl flex flex-col justify-between hover:border-violet-500 hover:shadow-md transition-all group">
+                <div>
+                  <div class="w-12 h-12 rounded-xl bg-violet-50 flex items-center justify-center text-violet-600 mb-4 group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-percent text-xl"></i>
+                  </div>
+                  <h3 class="font-bold text-slate-900 text-lg">Strategic Equities</h3>
+                  <p class="text-xs text-slate-500 mt-2 leading-relaxed">Controlled allocation in high-dividend stocks, infrastructure, and telecommunications for liquidity management without disrupting core cash flow.</p>
+                </div>
+                <span class="text-[10px] text-violet-600 font-bold tracking-wider uppercase mt-4 block">High Liquidity</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== SLIDE 6 ==================== -->
+        <section class="w-full h-full flex-shrink-0 flex items-center justify-center p-6 md:p-12">
+          <div class="max-w-5xl w-full space-y-8 relative z-10">
+            <div class="border-l-4 border-emerald-600 pl-4">
+              <p class="text-xs font-semibold text-emerald-600 tracking-wider uppercase">Horizon 2 | Expanding Growth</p>
+              <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900 mt-1">Horizon 2 | Expanding Cash Flow & Equity Value</h2>
+            </div>
+
+            <div class="bg-white border border-slate-200 p-8 rounded-2xl shadow-sm space-y-4">
+              <span class="inline-block bg-emerald-50 text-emerald-600 text-xs font-bold px-3 py-1 rounded-full border border-emerald-200 uppercase tracking-widest">Step 02</span>
+              <h3 class="font-extrabold text-slate-900 text-xl">Core Strategy</h3>
+              <p class="text-slate-600 leading-relaxed text-sm md:text-base">
+                Transition from passive asset-based income to active participation in business growth. Unlocking value by injecting capital, equipment, management resources, and strategic channels into established operations.
+              </p>
+            </div>
+
+            <!-- Active Deployment Visual Card -->
+            <div class="bg-gradient-to-r from-emerald-50 to-indigo-50 border border-slate-200 p-6 rounded-2xl relative overflow-hidden shadow-sm">
+              <div class="absolute right-0 top-0 opacity-10">
+                <i class="fa-solid fa-arrows-spin text-9xl text-emerald-600 animate-spin-slow"></i>
+              </div>
+              <h4 class="font-bold text-slate-900 text-base flex items-center space-x-2">
+                <i class="fa-solid fa-rocket text-emerald-600"></i>
+                <span>Active Capability Amplifiers</span>
+              </h4>
+              <p class="text-slate-500 text-xs mt-2 leading-relaxed max-w-2xl">
+                Deploy high-cap equipment (High-CapEx models) and high-value physical assets directly into operations, securing robust flow share and equity options.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== SLIDE 7 ==================== -->
+        <section class="w-full h-full flex-shrink-0 flex items-center justify-center p-6 md:p-12">
+          <div class="max-w-5xl w-full space-y-6 relative z-10">
+            <div class="border-l-4 border-indigo-600 pl-4">
+              <p class="text-xs font-semibold text-indigo-600 tracking-wider uppercase">Horizon 2 | Deployment Process</p>
+              <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900 mt-1">Capital & Capability Deployment</h2>
+            </div>
+
+            <!-- Capital & Capability Deployment Flow (strictly from PDF Page 7) -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 relative">
+              
+              <!-- Input Container -->
+              <div class="bg-white border border-slate-200 p-6 rounded-2xl relative shadow-sm">
+                <div class="absolute -top-3 left-6 px-3 py-1 bg-indigo-600 rounded-full text-[10px] font-bold tracking-wider uppercase text-white shadow-sm">INPUT</div>
+                <div class="space-y-3 mt-4">
+                  <div class="flex items-center space-x-3 text-sm">
+                    <i class="fa-solid fa-wallet text-indigo-600 w-5"></i>
+                    <span class="text-slate-700 font-medium">Capital</span>
+                  </div>
+                  <div class="flex items-center space-x-3 text-sm">
+                    <i class="fa-solid fa-toolbox text-indigo-600 w-5"></i>
+                    <span class="text-slate-700 font-medium">Equipment</span>
+                  </div>
+                  <div class="flex items-center space-x-3 text-sm">
+                    <i class="fa-solid fa-map-location-dot text-indigo-600 w-5"></i>
+                    <span class="text-slate-700 font-medium">Commercial Space</span>
+                  </div>
+                  <div class="flex items-center space-x-3 text-sm">
+                    <i class="fa-solid fa-chart-line text-indigo-600 w-5"></i>
+                    <span class="text-slate-700 font-medium">Early-stage AI data collection</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Engine Container -->
+              <div class="bg-white border border-emerald-200 p-6 rounded-2xl relative shadow-sm">
+                <div class="absolute -top-3 left-6 px-3 py-1 bg-emerald-600 rounded-full text-[10px] font-bold tracking-wider uppercase text-white shadow-sm">THE ENGINE (Targets)</div>
+                <div class="space-y-3 mt-4">
+                  <div class="p-3 bg-slate-50 rounded-xl border border-slate-100 shadow-inner">
+                    <span class="font-bold text-emerald-600 text-xs uppercase block mb-1">SMEs</span>
+                    <span class="text-xs text-slate-600">F&B supply chains, recycling, local services</span>
+                  </div>
+                  <div class="p-3 bg-slate-50 rounded-xl border border-slate-100 shadow-inner">
+                    <span class="font-bold text-emerald-600 text-xs uppercase block mb-1">High-Margin Medical</span>
+                    <span class="text-xs text-slate-600">Medical Aesthetics, Dental Clinics, Health Check-ups</span>
+                  </div>
+                  <div class="text-[10px] text-slate-400 text-center italic font-semibold">
+                    Professional medical teams retain full operational control.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Output Container -->
+              <div class="bg-white border border-slate-200 p-6 rounded-2xl relative shadow-sm">
+                <div class="absolute -top-3 left-6 px-3 py-1 bg-cyan-600 rounded-full text-[10px] font-bold tracking-wider uppercase text-white shadow-sm">OUTPUT (Our Returns)</div>
+                <div class="space-y-3 mt-4">
+                  <div class="flex items-center space-x-3 text-sm">
+                    <i class="fa-solid fa-chart-line text-cyan-600 w-5"></i>
+                    <span class="text-slate-700 font-medium">Equity growth</span>
+                  </div>
+                  <div class="flex items-center space-x-3 text-sm">
+                    <i class="fa-solid fa-server text-cyan-600 w-5"></i>
+                    <span class="text-slate-700 font-medium">High-CapEx models</span>
+                  </div>
+                  <div class="flex items-center space-x-3 text-sm">
+                    <i class="fa-solid fa-hand-holding-dollar text-cyan-600 w-5"></i>
+                    <span class="text-slate-700 font-medium">Revenue sharing</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== SLIDE 8 ==================== -->
+        <section class="w-full h-full flex-shrink-0 flex items-center justify-center p-6 md:p-12">
+          <div class="max-w-5xl w-full grid grid-cols-1 md:grid-cols-2 gap-8 items-center relative z-10">
+            <div class="space-y-6">
+              <div class="border-l-4 border-cyan-600 pl-4">
+                <p class="text-xs font-semibold text-cyan-600 tracking-wider uppercase">Platform Transformation</p>
+                <h2 class="text-2xl md:text-4xl font-extrabold text-slate-900 mt-1">Horizon 3 | The Platform Transformation</h2>
+              </div>
+              
+              <div class="bg-white border border-slate-200 p-6 rounded-2xl shadow-sm space-y-3">
+                <span class="inline-block bg-cyan-50 text-cyan-600 text-xs font-bold px-3 py-1 rounded-full border border-cyan-200 uppercase tracking-widest">Step 03</span>
+                <h3 class="font-extrabold text-slate-900 text-lg">Core Strategy</h3>
+                <p class="text-slate-600 text-sm md:text-base leading-relaxed">
+                  Evolve from a passive investor into a holding-style platform. Focus on building deep industrial integration, equity value, and technological moats to secure long-term strategic control.
+                </p>
+              </div>
+            </div>
+
+            <!-- Visualization of Transformation -->
+            <div class="bg-gradient-to-tr from-slate-100 via-indigo-50 to-slate-100 border border-indigo-100 p-8 rounded-3xl relative overflow-hidden flex flex-col justify-center min-h-[300px] shadow-sm">
+              <div class="absolute -top-10 -right-10 w-40 h-40 bg-indigo-200/20 rounded-full blur-2xl"></div>
+              <div class="text-center space-y-4">
+                <div class="inline-flex w-16 h-16 rounded-full bg-indigo-100 text-indigo-600 items-center justify-center text-2xl mb-2">
+                  <i class="fa-solid fa-diagram-project"></i>
+                </div>
+                <h3 class="text-xl font-bold text-slate-900">The Holding Engine</h3>
+                <p class="text-xs text-slate-500 max-w-sm mx-auto">
+                  Aggregating diverse cross-pollinated business sectors to construct deep ecosystem control, capturing compounding platform value.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== SLIDE 9 ==================== -->
+        <section class="w-full h-full flex-shrink-0 flex items-center justify-center p-6 md:p-12">
+          <div class="max-w-5xl w-full space-y-6 relative z-10">
+            <div class="border-l-4 border-emerald-600 pl-4">
+              <p class="text-xs font-semibold text-emerald-600 tracking-wider uppercase">Horizon 3 | Long-Term Drivers</p>
+              <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900 mt-1">Long-Term Value Drivers</h2>
+            </div>
+
+            <p class="text-slate-500 text-xs md:text-sm uppercase tracking-wider font-semibold">The Holding Platform Pillar Matrix</p>
+
+            <!-- Three Pillars strictly from PDF Page 9 -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              
+              <!-- Pillar 1 -->
+              <div class="bg-white border border-slate-200 p-6 rounded-2xl flex flex-col justify-between hover:border-emerald-500 hover:shadow-md transition-all">
+                <div class="space-y-4">
+                  <span class="text-xs font-bold text-emerald-600 uppercase tracking-widest block">Pillar 1</span>
+                  <h3 class="font-extrabold text-slate-900 text-lg">High-Potential Equity</h3>
+                  <p class="text-xs text-slate-500 leading-relaxed">
+                    Strategic M&A and equity investments in AI software, smart healthcare, pet tech, and high-value manufacturing.
+                  </p>
+                </div>
+                <div class="pt-6 border-t border-slate-100 mt-6 text-[10px] text-slate-400 uppercase tracking-widest font-semibold">Growth Capital & M&A</div>
+              </div>
+
+              <!-- Pillar 2 -->
+              <div class="bg-white border border-slate-200 p-6 rounded-2xl flex flex-col justify-between hover:border-emerald-500 hover:shadow-md transition-all">
+                <div class="space-y-4">
+                  <span class="text-xs font-bold text-emerald-600 uppercase tracking-widest block">Pillar 2</span>
+                  <h3 class="font-extrabold text-slate-900 text-lg">Real Estate & Urban Dev</h3>
+                  <p class="text-xs text-slate-500 leading-relaxed">
+                    Land development, commercial buildings, urban renewal, and policy-supported social/senior housing.
+                  </p>
+                </div>
+                <div class="pt-6 border-t border-slate-100 mt-6 text-[10px] text-slate-400 uppercase tracking-widest font-semibold">Asset Consolidation</div>
+              </div>
+
+              <!-- Pillar 3 -->
+              <div class="bg-white border border-slate-200 p-6 rounded-2xl flex flex-col justify-between hover:border-emerald-500 hover:shadow-md transition-all">
+                <div class="space-y-4">
+                  <span class="text-xs font-bold text-emerald-600 uppercase tracking-widest block">Pillar 3</span>
+                  <h3 class="font-extrabold text-slate-900 text-lg">Internal AI Data Platform</h3>
+                  <p class="text-xs text-slate-500 leading-relaxed">
+                    Aggregating cross-industry data (from Horizons 1 & 2) to build internal SaaS for investment evaluation, operational analytics, and customer behavior prediction.
+                  </p>
+                </div>
+                <div class="pt-6 border-t border-slate-100 mt-6 text-[10px] text-slate-400 uppercase tracking-widest font-semibold">Technological Moat</div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== SLIDE 10 ==================== -->
+        <section class="w-full h-full flex-shrink-0 flex items-center justify-center p-6 md:p-12">
+          <div class="max-w-5xl w-full space-y-4 relative z-10">
+            <div class="border-l-4 border-indigo-600 pl-4">
+              <p class="text-xs font-semibold text-indigo-600 tracking-wider uppercase">Integrated Chain Synergy</p>
+              <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900 mt-1">The Ecosystem Flywheel: Industrial Chain Integration</h2>
+            </div>
+            
+            <p class="text-slate-500 text-xs md:text-sm">
+              <i class="fa-solid fa-circle-info text-indigo-600 mr-1"></i>
+              Click on any segment node of the industrial chain below to inspect its operational linkage and cross-pollination logic:
+            </p>
+
+            <!-- Interactive Flywheel Display Panel -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center bg-slate-100/60 p-5 rounded-2xl border border-slate-200 backdrop-blur">
+              
+              <!-- Left: Segment Selector Buttons -->
+              <div class="md:col-span-4 flex flex-col space-y-2">
+                <button onclick="highlightFlywheel('node1')" id="fwNode1" class="px-4 py-3 rounded-xl border border-indigo-100 text-left text-xs bg-indigo-50 text-indigo-600 font-semibold transition-all shadow-sm">
+                  <i class="fa-solid fa-hotel mr-2"></i> Commercial Property & Hotels
+                </button>
+                <button onclick="highlightFlywheel('node2')" id="fwNode2" class="px-4 py-3 rounded-xl border border-slate-200 text-left text-xs text-slate-500 hover:text-slate-900 transition-all bg-white shadow-sm">
+                  <i class="fa-solid fa-paw mr-2"></i> Pet Hotels, Tech & Insurance
+                </button>
+                <button onclick="highlightFlywheel('node3')" id="fwNode3" class="px-4 py-3 rounded-xl border border-slate-200 text-left text-xs text-slate-500 hover:text-slate-900 transition-all bg-white shadow-sm">
+                  <i class="fa-solid fa-stethoscope mr-2"></i> Medical Clinics & SME Incubators
+                </button>
+                <button onclick="highlightFlywheel('node4')" id="fwNode4" class="px-4 py-3 rounded-xl border border-slate-200 text-left text-xs text-slate-500 hover:text-slate-900 transition-all bg-white shadow-sm">
+                  <i class="fa-solid fa-brain mr-2"></i> AI Data Platform
+                </button>
+              </div>
+
+              <!-- Right: Visual Relationship Explainer Panel -->
+              <div class="md:col-span-8 bg-white p-6 rounded-xl border border-slate-200 min-h-[160px] flex flex-col justify-between shadow-sm">
+                <div>
+                  <h4 id="fwTitle" class="font-extrabold text-indigo-600 text-base">Commercial Property & Hotels</h4>
+                  <p id="fwDesc" class="text-xs text-slate-600 mt-2 leading-relaxed">
+                    Provides fundamental physical space for accommodations and commercial venues. These physical assets evolve directly to host specialized Pet Hotels, medical facilities, and active commercial ventures, mitigating real estate acquisition bottlenecks.
+                  </p>
+                </div>
+                <div class="flex items-center space-x-2 text-[11px] text-emerald-600 bg-emerald-50 px-3 py-1.5 rounded-lg border border-emerald-100 mt-4 font-semibold">
+                  <i class="fa-solid fa-rotate animate-spin-slow"></i>
+                  <span id="fwFlywheelEffect">Synergistic Loop: Yields highly optimized physical assets, directly feeding early user and site behavior metrics into the AI Data Platform.</span>
+                </div>
+              </div>
+
+            </div>
+            
+            <p class="text-center text-xs text-slate-400 italic mt-2 font-semibold">
+              Takeaway: Isolated single projects cross-pollinate to create exponential, compounding platform value.
+            </p>
+          </div>
+        </section>
+
+        <!-- ==================== SLIDE 11 ==================== -->
+        <section class="w-full h-full flex-shrink-0 flex items-center justify-center p-6 md:p-12">
+          <div class="max-w-5xl w-full space-y-6 relative z-10">
+            <div class="border-l-4 border-emerald-600 pl-4">
+              <p class="text-xs font-semibold text-emerald-600 tracking-wider uppercase">Strategic Summary</p>
+              <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900 mt-1">A Self-Sustaining Investment Platform</h2>
+            </div>
+
+            <!-- Three Tier Matrix (strictly from PDF Page 11) -->
+            <div class="space-y-4">
+              
+              <!-- Tier 1 -->
+              <div class="bg-white border border-slate-200 p-5 rounded-xl hover:border-indigo-400 transition-all flex flex-col md:flex-row justify-between items-start md:items-center shadow-sm">
+                <div class="space-y-1">
+                  <span class="text-indigo-600 text-xs font-bold uppercase tracking-widest">Rooted in Cash Flow</span>
+                  <h4 class="font-bold text-slate-900 text-base">A secure foundation of accommodations, commercial property, and pet services.</h4>
+                </div>
+                <span class="text-xs bg-indigo-50 text-indigo-600 px-3 py-1 rounded-full border border-indigo-100 mt-2 md:mt-0 font-semibold">Defensive Yield</span>
+              </div>
+
+              <!-- Tier 2 -->
+              <div class="bg-white border border-slate-200 p-5 rounded-xl hover:border-emerald-400 transition-all flex flex-col md:flex-row justify-between items-start md:items-center shadow-sm">
+                <div class="space-y-1">
+                  <span class="text-emerald-600 text-xs font-bold uppercase tracking-widest">Accelerated by Growth Investments</span>
+                  <h4 class="font-bold text-slate-900 text-base">Leveraging capital and equipment to capture SME and healthcare upside.</h4>
+                </div>
+                <span class="text-xs bg-emerald-50 text-emerald-600 px-3 py-1 rounded-full border border-emerald-100 mt-2 md:mt-0 font-semibold">Capital Catalyst</span>
+              </div>
+
+              <!-- Tier 3 -->
+              <div class="bg-white border border-slate-200 p-5 rounded-xl hover:border-cyan-400 transition-all flex flex-col md:flex-row justify-between items-start md:items-center shadow-sm">
+                <div class="space-y-1">
+                  <span class="text-cyan-600 text-xs font-bold uppercase tracking-widest">Maximized by Ecosystem Integration</span>
+                  <h4 class="font-bold text-slate-900 text-base">Scaling through an internal AI data platform and strategic real estate development.</h4>
+                </div>
+                <span class="text-xs bg-cyan-50 text-cyan-600 px-3 py-1 rounded-full border border-cyan-100 mt-2 md:mt-0 font-semibold">Ecosystem Control</span>
+              </div>
+
+            </div>
+
+            <p class="text-center text-slate-600 text-sm font-semibold pt-4">
+              Generating stable cash flow, continuous asset appreciation, equity returns, and long-term strategic value.
+            </p>
+          </div>
+        </section>
+
+        <!-- ==================== SLIDE 12 ==================== -->
+        <!-- Forced bg-white and high z-index to block background gradients behind the top-left logo -->
+        <section class="w-full h-full flex-shrink-0 flex items-center justify-center p-6 md:p-12 relative bg-white z-10">
+          <!-- LOGO positioned exactly at the TOP-LEFT corner of Slide 12 with responsive size -->
+          <div class="absolute top-6 left-6 md:top-12 md:left-12 flex items-center z-20">
+            <img src="image_11f689.png" 
+                 class="h-10 md:h-14 w-auto object-contain logo-filter transition-all duration-300" 
+                 alt="SAM Logo">
+          </div>
+
+          <div class="max-w-4xl text-center space-y-8 relative z-10 flex flex-col items-center">
+            <h2 class="text-5xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-accent-indigo via-accent-cyan to-accent-emerald tracking-tight">
+              Thank You.
+            </h2>
+            <p class="text-lg md:text-xl text-slate-600 font-light leading-relaxed">
+              Thanks for your attention.
+            </p>
+            
+            <div class="inline-flex items-center space-x-2 bg-slate-100 px-6 py-3 rounded-2xl border border-slate-200 text-sm text-slate-600 shadow-sm">
+              <i class="fa-solid fa-circle-question text-emerald-600 text-base"></i>
+              <span class="font-bold uppercase tracking-wider text-slate-900">Q&A Session Open</span>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- Slide Viewport Bottom Navigation Controls -->
+      <div id="slideControls" class="absolute bottom-6 left-6 right-6 flex justify-between items-center z-40 bg-white/90 backdrop-blur border border-slate-200 p-3 rounded-xl shadow-sm">
+        <div class="flex items-center space-x-2 text-xs text-slate-500">
+          <span id="currentSlideIndex" class="font-semibold text-slate-900">1</span>
+          <span>/</span>
+          <span id="totalSlides">12</span>
+        </div>
+
+        <div class="flex items-center space-x-2">
+          <button onclick="prevSlide()" class="w-9 h-9 rounded-lg bg-slate-50 border border-slate-200 hover:border-indigo-500 text-slate-600 hover:text-slate-900 transition-all flex items-center justify-center shadow-inner">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+          <button id="btnPlayPause" onclick="toggleAutoPlay()" class="w-9 h-9 rounded-lg bg-slate-50 border border-slate-200 hover:border-indigo-500 text-slate-600 hover:text-slate-900 transition-all flex items-center justify-center shadow-inner">
+            <i class="fa-solid fa-play"></i>
+          </button>
+          <button onclick="nextSlide()" class="w-9 h-9 rounded-lg bg-slate-50 border border-slate-200 hover:border-indigo-500 text-slate-600 hover:text-slate-900 transition-all flex items-center justify-center shadow-inner">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
+
+        <!-- Horizontal Slide progress loader bar -->
+        <div class="w-24 md:w-48 bg-slate-100 h-1.5 rounded-full overflow-hidden border border-slate-200 shadow-inner">
+          <div id="slideProgressBar" class="bg-indigo-600 h-full transition-all duration-300" style="width: 8.33%;"></div>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Main Application Logic script code -->
+  <script>
+    const slidesData = [
+      { id: 1, title: "1. Cover: Strategic Plan", short: "Cover" },
+      { id: 2, title: "2. Beyond Single Returns", short: "Returns" },
+      { id: 3, title: "3. Three-Horizon Blueprint", short: "Three Horizons" },
+      { id: 4, title: "4. Horizon 1: Strategy", short: "H1 Strategy" },
+      { id: 5, title: "5. H1 Core Cash-Flow Assets", short: "H1 Assets" },
+      { id: 6, title: "6. Horizon 2: Expanding Value", short: "H2 Strategy" },
+      { id: 7, title: "7. Capital & Capability", short: "Deployment Flow" },
+      { id: 8, title: "8. Horizon 3: Transformation", short: "H3 Platform" },
+      { id: 9, title: "9. Long-Term Value Drivers", short: "H3 Pillars" },
+      { id: 10, title: "10. The Ecosystem Flywheel", short: "Synergy Flywheel" },
+      { id: 11, title: "11. Self-Sustaining Platform", short: "Strategic Matrix" },
+      { id: 12, title: "12. Thank You & QA", short: "Thank You" }
+    ];
+
+    let currentSlide = 0;
+    const totalSlides = slidesData.length;
+    let autoPlayTimer = null;
+    let isPlaying = false;
+    let viewMode = 'slide'; // 'slide' or 'scroll'
+
+    // Load elements and initialize sidebar navigation dynamically
+    window.onload = function() {
+      const select = document.getElementById('slideSelector');
+      const sidebar = document.getElementById('sidebarNav');
+      
+      slidesData.forEach((slide, index) => {
+        // Dropdown menu populate
+        const option = document.createElement('option');
+        option.value = index;
+        option.textContent = slide.title;
+        select.appendChild(option);
+
+        // Sidebar thumbnail items populate
+        const btn = document.createElement('button');
+        btn.id = `sidebarItem-${index}`;
+        btn.onclick = () => jumpToSlide(index);
+        btn.className = `w-full text-left p-2.5 rounded-xl border text-xs transition-all duration-300 flex items-center space-y-1 ${index === 0 ? 'bg-indigo-50 border-indigo-200 text-indigo-600 font-semibold' : 'border-slate-100 text-slate-500 hover:text-slate-800 hover:bg-slate-50'}`;
+        btn.innerHTML = `
+          <div class="flex flex-col">
+            <span class="text-[9px] text-slate-400 font-bold uppercase tracking-wider">Slide ${slide.id}</span>
+            <span class="truncate mt-0.5">${slide.title.split('. ')[1]}</span>
+          </div>
+        `;
+        sidebar.appendChild(btn);
+      });
+
+      // Default load Tab 1 contents for the Horizon table view on Slide 3
+      setActiveHorizon(1);
+    };
+
+    // Jump immediately to specific slide
+    function jumpToSlide(index) {
+      currentSlide = parseInt(index);
+      updateSlides();
+      playClickSound();
+    }
+
+    // Step forward slide
+    function nextSlide() {
+      if (currentSlide < totalSlides - 1) {
+        currentSlide++;
+        updateSlides();
+        playClickSound();
+      } else if (isPlaying) {
+        toggleAutoPlay(); // Halt at last slide
+      }
+    }
+
+    // Step backward slide
+    function prevSlide() {
+      if (currentSlide > 0) {
+        currentSlide--;
+        updateSlides();
+        playClickSound();
+      }
+    }
+
+    // Update active visual elements
+    function updateSlides() {
+      const track = document.getElementById('slideTrack');
+      const percentage = currentSlide * 100;
+      track.style.transform = `translateX(-${percentage}%)`;
+
+      // Update counters, sliders and bars
+      document.getElementById('currentSlideIndex').textContent = currentSlide + 1;
+      document.getElementById('slideProgressBar').style.width = `${((currentSlide + 1) / totalSlides) * 100}%`;
+      document.getElementById('slideSelector').value = currentSlide;
+
+      // Reset sidebar active indicators
+      slidesData.forEach((_, idx) => {
+        const item = document.getElementById(`sidebarItem-${idx}`);
+        if (item) {
+          if (idx === currentSlide) {
+            item.className = "w-full text-left p-2.5 rounded-xl border text-xs transition-all duration-300 flex items-center space-y-1 bg-indigo-50 border-indigo-200 text-indigo-600 font-semibold shadow-sm";
+          } else {
+            item.className = "w-full text-left p-2.5 rounded-xl border text-xs transition-all duration-300 flex items-center space-y-1 border-slate-100 text-slate-500 hover:text-slate-800 hover:bg-slate-50";
+          }
+        }
+      });
+    }
+
+    // Auto-presentation loop toggler
+    function toggleAutoPlay() {
+      const btn = document.getElementById('btnPlayPause');
+      if (isPlaying) {
+        clearInterval(autoPlayTimer);
+        btn.innerHTML = '<i class="fa-solid fa-play"></i>';
+        isPlaying = false;
+      } else {
+        isPlaying = true;
+        btn.innerHTML = '<i class="fa-solid fa-pause text-indigo-600"></i>';
+        autoPlayTimer = setInterval(() => {
+          nextSlide();
+        }, 4000); // Trigger page step every 4 seconds
+      }
+    }
+
+    // Bind physical keyboard presentation inputs
+    document.addEventListener('keydown', (e) => {
+      if (viewMode === 'slide') {
+        if (e.key === 'ArrowRight' || e.key === 'Space') {
+          nextSlide();
+        } else if (e.key === 'ArrowLeft') {
+          prevSlide();
+        }
+      }
+    });
+
+    // Handle mobile touch gestures
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const viewport = document.getElementById('slideViewport');
+    
+    viewport.addEventListener('touchstart', e => {
+      touchStartX = e.changedTouches[0].screenX;
+    });
+
+    viewport.addEventListener('touchend', e => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    });
+
+    function handleSwipe() {
+      if (viewMode === 'slide') {
+        if (touchStartX - touchEndX > 50) {
+          nextSlide(); // Swiped Left
+        }
+        if (touchEndX - touchStartX > 50) {
+          prevSlide(); // Swiped Right
+        }
+      }
+    }
+
+    // Toggle scroll layout versus slide layout
+    function setMode(mode) {
+      viewMode = mode;
+      const btnSlide = document.getElementById('btnModeSlide');
+      const btnScroll = document.getElementById('btnModeScroll');
+      const track = document.getElementById('slideTrack');
+      const controls = document.getElementById('slideControls');
+      const sidebar = document.getElementById('sidebarNav');
+
+      if (mode === 'scroll') {
+        track.className = "flex flex-col h-auto w-full overflow-y-auto no-scrollbar py-6 space-y-8";
+        track.style.transform = "none";
+        
+        const sections = track.getElementsByTagName('section');
+        for (let s of sections) {
+          s.className = "w-full min-h-[85vh] py-12 border-b border-slate-200 flex-shrink-0 flex items-center justify-center p-6 bg-white";
+        }
+
+        controls.classList.add('hidden');
+        sidebar.classList.add('hidden');
+
+        btnScroll.className = "px-3 py-1.5 rounded-md font-semibold bg-white text-slate-900 transition-all shadow-sm flex items-center space-x-1 border border-slate-200";
+        btnSlide.className = "px-3 py-1.5 rounded-md font-semibold text-slate-500 hover:text-slate-900 transition-all flex items-center space-x-1";
+      } else {
+        track.className = "slide-container flex h-full w-full";
+        
+        const sections = track.getElementsByTagName('section');
+        for (let s of sections) {
+          s.className = "w-full h-full flex-shrink-0 flex items-center justify-center p-6 md:p-12";
+        }
+
+        controls.classList.remove('hidden');
+        if (window.innerWidth >= 1024) {
+          sidebar.classList.remove('hidden');
+        }
+
+        btnSlide.className = "px-3 py-1.5 rounded-md font-semibold bg-white text-slate-900 transition-all shadow-sm flex items-center space-x-1 border border-slate-200";
+        btnScroll.className = "px-3 py-1.5 rounded-md font-semibold text-slate-500 hover:text-slate-900 transition-all flex items-center space-x-1";
+        updateSlides();
+      }
+      playClickSound();
+    }
+
+    // Three Horizon Strategic Blueprint Matrix Data (Strictly from PDF Page 3)
+    const horizonData = {
+      1: {
+        title: "Horizon 1: Build Stable Cash Flow",
+        aim: "Establish core cash flow baseline with highly secure, recurring-yield operational opportunities.",
+        assets: "Accommodations, Pet Services, Commercial Rentals, Dividend Stocks.",
+        returnProfile: "Predictable Asset Income.",
+        role: "Joint Venture (JV) or Outsourced Management."
+      },
+      2: {
+        title: "Horizon 2: Expand Cash Flow & Enter Growth Investments",
+        aim: "Transition from passive asset-based yields to strategic equity value sharing and CapEx model monetization.",
+        assets: "SME Equity, Medical/Dental Equipment, Early AI Data.",
+        returnProfile: "Revenue Sharing & Equity Upside.",
+        role: "Capital/Equipment Provider + Strategic Support."
+      },
+      3: {
+        title: "Horizon 3: Build Equity Value, Tech Capabilities & Ecosystem Control",
+        aim: "Aggressive transformation into holding structure with massive long-term platform barriers and SaaS integrations.",
+        assets: "Long-Term Equity, AI SaaS, Real Estate & Urban Dev.",
+        returnProfile: "Capital Appreciation & Platform Moats.",
+        role: "Holding-Style Ecosystem Integrator."
+      }
+    };
+
+    function setActiveHorizon(hzNum) {
+      // Toggle Tab Styles
+      for (let i = 1; i <= 3; i++) {
+        const tab = document.getElementById(`hzTab${i}`);
+        if (i === hzNum) {
+          tab.className = "px-4 py-2 rounded-xl text-sm font-semibold bg-white text-indigo-600 border border-indigo-200 shadow-sm whitespace-nowrap transition-all duration-300";
+        } else {
+          tab.className = "px-4 py-2 rounded-xl text-sm font-semibold text-slate-500 hover:text-slate-900 whitespace-nowrap transition-all duration-300";
+        }
+      }
+
+      // Populate targeted comparisons data elements
+      const data = horizonData[hzNum];
+      const container = document.getElementById('horizonContent');
+      container.innerHTML = `
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+          <div class="md:col-span-8 space-y-4">
+            <h3 class="text-xl font-bold text-slate-900 flex items-center">
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 mr-2.5 animate-pulse"></span>
+              ${data.title}
+            </h3>
+            <p class="text-xs text-slate-600 leading-relaxed"><strong class="text-slate-900">Primary Objective:</strong> ${data.aim}</p>
+            <div class="space-y-2 mt-2">
+              <p class="text-xs text-slate-500"><strong class="text-slate-900">Focus Asset Classes:</strong> ${data.assets}</p>
+              <p class="text-xs text-slate-500"><strong class="text-slate-900">Target Return Profile:</strong> <span class="text-emerald-600 font-semibold">${data.returnProfile}</span></p>
+              <p class="text-xs text-slate-500"><strong class="text-slate-900">Operational Role:</strong> ${data.role}</p>
+            </div>
+          </div>
+          <div class="md:col-span-4 flex justify-center">
+            <div class="w-24 h-24 rounded-2xl bg-gradient-to-tr ${hzNum === 1 ? 'from-indigo-50 to-cyan-50 text-cyan-600' : hzNum === 2 ? 'from-emerald-50 to-cyan-50 text-emerald-600' : 'from-violet-50 to-indigo-50 text-violet-600'} border border-slate-200 flex flex-col items-center justify-center shadow-sm">
+              <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">HORIZON</span>
+              <span class="text-3xl font-extrabold mt-1">0${hzNum}</span>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // Ecosystem Flywheel Synergic Node relationships (strictly from PDF Page 10)
+    const flywheelData = {
+      node1: {
+        title: "Commercial Property & Hotels",
+        desc: "Provides fundamental physical space for accommodations and commercial venues. These physical assets evolve directly to host specialized Pet Hotels, medical facilities, and active commercial ventures, mitigating real estate acquisition bottlenecks.",
+        effect: "Synergistic Loop: Yields highly optimized physical assets, directly feeding early user and site behavior metrics into the AI Data Platform."
+      },
+      node2: {
+        title: "Pet Hotels, Tech & Insurance",
+        desc: "Pet accommodation facilities generate recurring visitor footprints. Introducing high-yield pet wearables and IoT hardware converts local customers into persistent subscribers, generating long-term SaaS metrics.",
+        effect: "Synergistic Loop: Delivers high-stickiness monthly cash flows and channels unique animal health profiles to the central analytics hub."
+      },
+      node3: {
+        title: "Medical Clinics & SME Incubators",
+        desc: "Secures high-margin operational pipelines. Utilizes commercial properties directly to bypass volatile urban real estate rents, allowing professional medical experts to focus purely on executing top-tier specialized care.",
+        effect: "Synergistic Loop: Generates strong immediate flow splits while accumulating high-value health index records for diagnostic modeling."
+      },
+      node4: {
+        title: "AI Data Platform",
+        desc: "The holding core platform's predictive database. Safely aggregates anonymized visitor profiles, medical index charts, and retail spending histories to optimize resource planning, property deployment, and external B2B commercialized pipelines.",
+        effect: "Synergistic Loop: Functions as the ultimate competitive moat, drastically multiplying the entire platform's long-term enterprise valuation."
+      }
+    };
+
+    // Flywheel node switcher logic
+    function highlightFlywheel(nodeKey) {
+      // Toggle selected button style
+      for (let i = 1; i <= 4; i++) {
+        const btn = document.getElementById(`fwNode${i}`);
+        if (`node${i}` === nodeKey) {
+          btn.className = "px-4 py-3 rounded-xl border border-indigo-100 text-left text-xs bg-indigo-50 text-indigo-600 font-semibold transition-all shadow-sm";
+        } else {
+          btn.className = "px-4 py-3 rounded-xl border border-slate-200 text-left text-xs text-slate-500 hover:text-slate-900 transition-all bg-white shadow-sm";
+        }
+      }
+
+      // Transition textual content
+      const d = flywheelData[nodeKey];
+      document.getElementById('fwTitle').textContent = d.title;
+      document.getElementById('fwDesc').textContent = d.desc;
+      document.getElementById('fwFlywheelEffect').textContent = d.effect;
+      playClickSound();
+    }
+
+    // Audio click feedback
+    function playClickSound() {
+      try {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(900, ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(300, ctx.currentTime + 0.05);
+        gain.gain.setValueAtTime(0.04, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.05);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.05);
+      } catch (e) {
+        // Prevent audio contextual crash when browser blocks autoplays
+      }
+    }
+  </script>
+</body>
+</html>
