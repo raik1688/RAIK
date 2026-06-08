@@ -1,0 +1,1243 @@
+/* ==========================================================================
+   RAIK PORTFOLIO PRESENTATION PLAYER STYLESHEET (REVISED HIGH-FIDELITY LIVE)
+   Theme: Pure White Background, Exact Slide Alignment, Tech Special Effects
+   ========================================================================== */
+
+/* Variables */
+:root {
+    --bg-slide-light: #ffffff;
+    --bg-slide-dark: #094e95;
+    
+    --hud-bg-light: rgba(255, 255, 255, 0.9);
+    --hud-bg-dark: rgba(15, 23, 42, 0.95);
+    
+    --text-dark: #1e293b;
+    --text-light: #f8fafc;
+    --text-muted-dark: #475569;
+    
+    --primary: #0284c7; /* Sky Blue */
+    --primary-rgb: 2, 132, 199;
+    --secondary: #7c3aed; /* Violet */
+    
+    --font-heading: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    
+    --transition-speed: 0.7s;
+    --transition-curve: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Base resets - Strict minimalist font family */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-body) !important;
+}
+
+body.presentation-body {
+    background-color: var(--bg-slide-light);
+    color: var(--text-dark);
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    user-select: none;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.5s ease;
+}
+
+/* Color Inversion on Slide 9 */
+body.slide-9-active {
+    background-color: var(--bg-slide-dark);
+    color: var(--text-light);
+}
+
+/* Slider Layout */
+.slider-container {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    z-index: 10;
+}
+
+.slide-wrapper {
+    display: flex;
+    width: 900vw; /* 9 Slides */
+    height: 100%;
+    transition: transform var(--transition-speed) var(--transition-curve);
+    will-change: transform;
+}
+
+.slide {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-slide-light);
+    position: relative;
+    flex-shrink: 0;
+}
+
+.slide.bg-dark-blue {
+    background-color: var(--bg-slide-dark);
+}
+
+/* Slide Stage (16:9 PPT aspect ratio stage container) */
+.slide-stage {
+    width: 1280px;
+    height: 714px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform-origin: center center;
+    transform: translate(-50%, -50%) scale(1);
+    overflow: hidden;
+    background-color: #ffffff;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
+    border-radius: 4px;
+    will-change: transform;
+}
+
+.slide.bg-dark-blue .slide-stage {
+    background-color: var(--bg-slide-dark);
+    box-shadow: none;
+}
+
+/* Background image templates */
+.slide-bg-template {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 1;
+}
+
+/* Positioned containers */
+.shape {
+    position: absolute;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    text-align: left;
+    line-height: 1.4;
+}
+
+.pic {
+    position: absolute;
+    z-index: 5;
+    pointer-events: auto;
+}
+
+/* Standard slide titles */
+.slide-title-standard {
+    position: absolute;
+    left: 80px;
+    top: 40px;
+    font-size: 38px;
+    font-weight: 800;
+    color: #0f172a !important;
+    letter-spacing: -0.01em;
+    z-index: 99 !important;
+    pointer-events: none;
+}
+
+/* ==========================================================================
+   Premium Interactive Card Styles & Animations
+   ========================================================================== */
+
+/* Main White card layout with smooth scaling & outline glow */
+.value-card, 
+.fea-feature-box,
+.project-card-v2 {
+    position: absolute;
+    background: #ffffff !important;
+    border: 1px solid rgba(2, 132, 199, 0.12) !important;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02) !important;
+    transition: transform 0.35s var(--transition-curve), 
+                box-shadow 0.35s ease, 
+                border-color 0.35s ease;
+    z-index: 5;
+    padding: 20px;
+    overflow: hidden;
+}
+
+.value-card:hover, 
+.fea-feature-box:hover,
+.project-card-v2:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 36px rgba(2, 132, 199, 0.12) !important;
+    border-color: rgba(2, 132, 199, 0.35) !important;
+    z-index: 8;
+}
+
+/* Transparent Overlay Cards (Slide 2, 3, 7, 8) to align with background graphics & avoid double-renders */
+.timeline-card,
+.competency-card, 
+.flow-card, 
+.sys-module-card,
+.slide5-summary-card,
+.system-full-summary-card {
+    position: absolute;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    z-index: 5;
+    padding: 20px;
+    overflow: hidden;
+    transition: transform 0.35s var(--transition-curve);
+}
+
+.timeline-card:hover,
+.competency-card:hover, 
+.flow-card:hover, 
+.sys-module-card:hover {
+    transform: translateY(-4px);
+    z-index: 8;
+}
+
+/* Corner tech brackets on hover for cards (adds incredible sci-fi tech feel) */
+.timeline-card::before, .competency-card::before, .value-card::before, .fea-feature-box::before, .project-card-v2::before, .flow-card::before, .sys-module-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 12px;
+    height: 12px;
+    border-top: 2px solid var(--primary);
+    border-left: 2px solid var(--primary);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.timeline-card::after, .competency-card::after, .value-card::after, .fea-feature-box::after, .project-card-v2::after, .flow-card::after, .sys-module-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 12px;
+    height: 12px;
+    border-bottom: 2px solid var(--primary);
+    border-right: 2px solid var(--primary);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.timeline-card:hover::before, .competency-card:hover::before, .value-card:hover::before, .fea-feature-box:hover::before, .project-card-v2:hover::before, .flow-card:hover::before, .sys-module-card:hover::before,
+.timeline-card:hover::after, .competency-card:hover::after, .value-card:hover::after, .fea-feature-box:hover::after, .project-card-v2:hover::after, .flow-card:hover::after, .sys-module-card:hover::after {
+    opacity: 1;
+}
+
+/* ==========================================================================
+   Slide Specific Layouts & Text Settings
+   ========================================================================== */
+
+/* Slide 1 (Hero) */
+.hero-name-card {
+    transition: transform 0.4s var(--transition-curve), border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.hero-name-card:hover {
+    transform: scale(1.03);
+    border-color: rgba(2, 132, 199, 0.45) !important;
+    box-shadow: 0 10px 30px rgba(2, 132, 199, 0.1) !important;
+}
+
+.slide1-subtitle {
+    font-size: 56px;
+    font-weight: 800;
+    color: #3b4252;
+    letter-spacing: -0.01em;
+}
+
+.slide1-name {
+    font-size: 38px;
+    font-weight: 800;
+    color: #0f172a;
+}
+
+.slide1-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--primary);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+/* Slide 2 (Timeline) */
+.timeline-card {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.8) !important;
+    border: 1px solid rgba(2, 132, 199, 0.08) !important;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02) !important;
+    z-index: 5;
+    padding: 20px;
+    overflow: visible;
+    transition: transform 0.35s var(--transition-curve), border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.timeline-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(2, 132, 199, 0.25) !important;
+    box-shadow: 0 12px 30px rgba(2, 132, 199, 0.08) !important;
+    z-index: 8;
+}
+
+.timeline-node {
+    transition: transform 0.3s var(--transition-curve), background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.timeline-card:hover .timeline-node {
+    transform: scale(1.4);
+    background-color: var(--secondary) !important;
+    box-shadow: 0 0 12px var(--secondary) !important;
+}
+
+.edu-year {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--primary);
+    background-color: rgba(2, 132, 199, 0.06);
+    padding: 4px 14px;
+    border-radius: 14px;
+    display: inline-block;
+    width: fit-content;
+}
+
+.edu-school {
+    font-size: 18px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-top: 10px;
+}
+
+.edu-school-sub {
+    font-size: 15px;
+    font-weight: 600;
+    color: #475569;
+    margin-top: 4px;
+}
+
+.edu-detail {
+    font-size: 15px;
+    color: #475569;
+    margin-top: 10px;
+    line-height: 1.5;
+}
+
+.edu-summary-bar-card {
+    position: absolute;
+    z-index: 5;
+    background: #ffffff;
+    border: 1px solid rgba(2, 132, 199, 0.15);
+    border-left: 4px solid var(--primary);
+    border-radius: 4px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+    font-size: 18px;
+    font-weight: 700;
+    color: #0f172a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+    transition: transform 0.3s ease;
+}
+
+.edu-summary-bar-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(2, 132, 199, 0.08);
+}
+
+/* Slide 3 (Core Competencies) */
+.competency-card {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.8) !important;
+    border: 1px solid rgba(2, 132, 199, 0.08) !important;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02) !important;
+    z-index: 5;
+    padding: 20px;
+    transition: transform 0.35s var(--transition-curve), border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.competency-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(2, 132, 199, 0.25) !important;
+    box-shadow: 0 12px 30px rgba(2, 132, 199, 0.08) !important;
+    z-index: 8;
+}
+
+.comp-title {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--primary);
+    margin-bottom: 12px;
+    padding-bottom: 6px;
+    border-bottom: 2px dashed rgba(2, 132, 199, 0.15);
+}
+
+.comp-item {
+    font-size: 16px;
+    color: #334155;
+    margin-bottom: 8px;
+    line-height: 1.5;
+    position: relative;
+    padding-left: 24px;
+}
+
+.comp-item::before {
+    display: none;
+}
+
+/* Slide 4 (Core Values) */
+.value-card {
+    display: flex;
+    flex-direction: column;
+    background: #ffffff !important;
+    border: 1px solid rgba(2, 132, 199, 0.12) !important;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02) !important;
+    transition: transform 0.35s var(--transition-curve), box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.value-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 36px rgba(2, 132, 199, 0.12) !important;
+    border-color: rgba(2, 132, 199, 0.35) !important;
+    z-index: 8;
+}
+
+.value-card-header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.value-card-icon {
+    transition: transform 0.3s var(--transition-curve);
+}
+
+.value-card:hover .value-card-icon {
+    transform: scale(1.1) rotate(3deg);
+}
+
+.value-card-title {
+    font-size: 22px;
+    font-weight: 800;
+    color: #0f172a;
+    margin-left: 15px;
+}
+
+.value-card-desc {
+    font-size: 15px;
+    color: #334155;
+    line-height: 1.6;
+    margin-top: 15px;
+    font-weight: 500;
+}
+
+.value-card-graph {
+    transition: transform 0.4s var(--transition-curve);
+}
+
+.value-card:hover .value-card-graph {
+    transform: scale(1.08) translateX(-2px);
+}
+
+/* Slide 5 (FEA Simulation) */
+.fea-plot-container {
+    transition: transform 0.35s var(--transition-curve), border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.fea-plot-container:hover {
+    transform: scale(1.03) translateY(-4px);
+    border-color: rgba(6, 182, 212, 0.45) !important;
+    box-shadow: 0 12px 30px rgba(6, 182, 212, 0.15) !important;
+    z-index: 10;
+}
+
+.fea-scan-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.85), transparent);
+    box-shadow: 0 0 12px rgba(6, 182, 212, 0.9);
+    animation: laser-scan 4s linear infinite;
+    z-index: 10;
+    pointer-events: none;
+}
+
+@keyframes laser-scan {
+    0%, 100% { top: 0%; }
+    50% { top: 100%; }
+}
+
+.fea-feature-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: #ffffff !important;
+    border: 1px solid rgba(2, 132, 199, 0.12) !important;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02) !important;
+    transition: transform 0.35s var(--transition-curve), box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.fea-feature-box:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 36px rgba(2, 132, 199, 0.12) !important;
+    border-color: rgba(2, 132, 199, 0.35) !important;
+    z-index: 8;
+}
+
+.fea-feature-title {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--primary);
+    margin-bottom: 12px;
+    border-bottom: 2px solid var(--primary);
+    padding-bottom: 4px;
+    display: inline-block;
+    line-height: 1.2;
+}
+
+.fea-feature-desc {
+    font-size: 15px;
+    color: #475569;
+    line-height: 1.6;
+    font-weight: 500;
+}
+
+.slide5-summary-card {
+    font-size: 16px;
+    font-weight: 700;
+    color: #475569;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Slide 6 (Project Experience) */
+.project-card-v2 {
+    background: #ffffff !important;
+    border: 1px solid rgba(2, 132, 199, 0.12) !important;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02) !important;
+    transition: transform 0.35s var(--transition-curve), box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.project-card-v2:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 36px rgba(2, 132, 199, 0.12) !important;
+    border-color: rgba(2, 132, 199, 0.35) !important;
+    z-index: 8;
+}
+
+.project-case-title {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--primary);
+    border-bottom: 2px solid rgba(2, 132, 199, 0.15);
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+    width: 100%;
+}
+
+.project-img-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 15px;
+    background-color: rgba(2, 132, 199, 0.01);
+    border-radius: 8px;
+    border: 1px dashed rgba(2, 132, 199, 0.06);
+    overflow: hidden;
+}
+
+.project-img-wrapper img {
+    transition: transform 0.4s var(--transition-curve);
+}
+
+.project-card-v2:hover .project-img-wrapper img {
+    transform: scale(1.04);
+}
+
+.info-block {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: flex-start;
+}
+
+.info-label {
+    font-size: 14px;
+    font-weight: 800;
+    flex-shrink: 0;
+    text-transform: uppercase;
+}
+
+.label-constraints {
+    color: #d97706;
+}
+
+.label-role {
+    color: var(--primary);
+}
+
+.label-key {
+    color: var(--secondary);
+}
+
+.info-text {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-dark);
+    line-height: 1.4;
+}
+
+/* Slide 7 (AI Upgrade Columns) */
+.flow-card {
+    transition: transform 0.35s var(--transition-curve), border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.flow-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(2, 132, 199, 0.35) !important;
+    box-shadow: 0 16px 36px rgba(2, 132, 199, 0.1) !important;
+    z-index: 8;
+}
+
+.tech-flow-connector {
+    position: absolute;
+    width: 50px;
+    height: 20px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Slide 7 High-Tech SVG Arrow Animations */
+.tech-arrow-svg {
+    overflow: visible;
+}
+
+.arrow-line-path {
+    stroke-dasharray: 12, 18;
+    animation: dash-travel 1s linear infinite;
+}
+
+.arrow-head-path {
+    animation: head-pulse 1s ease-in-out infinite alternate;
+}
+
+@keyframes dash-travel {
+    to {
+        stroke-dashoffset: -30;
+    }
+}
+
+@keyframes head-pulse {
+    0% { opacity: 0.6; transform: translateX(-1px); }
+    100% { opacity: 1; transform: translateX(1.5px); filter: drop-shadow(0 0 3px #7c3aed); }
+}
+
+/* Slide 7 AI Core Redesign */
+.flow-card-violet {
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.03) 0%, rgba(2, 132, 199, 0.03) 100%) !important;
+    border: 1.5px solid rgba(124, 58, 237, 0.3) !important;
+    box-shadow: 0 8px 30px rgba(124, 58, 237, 0.06) !important;
+}
+
+.flow-card-violet:hover {
+    border-color: rgba(124, 58, 237, 0.5) !important;
+    box-shadow: 0 16px 36px rgba(124, 58, 237, 0.16) !important;
+    transform: translateY(-6px);
+}
+
+/* Slide 7 AI Hexagon Neural Core Redesign */
+.ai-hex-core-container {
+    perspective: 800px;
+}
+
+.ai-hex-glow {
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    background: radial-gradient(circle, rgba(124, 58, 237, 0.25) 0%, transparent 70%);
+    animation: hex-pulse-glow 2s infinite alternate;
+}
+
+@keyframes hex-pulse-glow {
+    0% { transform: scale(0.9); opacity: 0.4; }
+    100% { transform: scale(1.15); opacity: 0.9; }
+}
+
+/* Outer rotating tech hexagon border */
+.ai-hex-outer-ring {
+    position: absolute;
+    width: 125px;
+    height: 125px;
+    border: 2px dashed rgba(124, 58, 237, 0.45);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    animation: spin-hex-clockwise 10s linear infinite;
+}
+
+@keyframes spin-hex-clockwise {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 3D Gyroscopic Rings */
+.ai-gyro-ring {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(2, 132, 199, 0.4);
+    box-shadow: 0 0 8px rgba(2, 132, 199, 0.2);
+}
+
+.ai-gyro-ring.ring-x {
+    border-color: rgba(124, 58, 237, 0.5);
+    animation: rotate-gyro-x 3s linear infinite;
+}
+
+.ai-gyro-ring.ring-y {
+    border-color: rgba(2, 132, 199, 0.5);
+    animation: rotate-gyro-y 4s linear infinite;
+}
+
+.ai-gyro-ring.ring-z {
+    border-color: rgba(6, 182, 212, 0.5);
+    animation: rotate-gyro-z 2.5s linear infinite;
+}
+
+@keyframes rotate-gyro-x {
+    0% { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
+    100% { transform: rotateX(360deg) rotateY(0deg) rotateZ(0deg); }
+}
+
+@keyframes rotate-gyro-y {
+    0% { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
+    100% { transform: rotateX(0deg) rotateY(360deg) rotateZ(0deg); }
+}
+
+@keyframes rotate-gyro-z {
+    0% { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
+    100% { transform: rotateX(0deg) rotateY(0deg) rotateZ(360deg); }
+}
+
+/* Central glowing core hexagon microchip */
+.ai-hex-center {
+    position: relative;
+    width: 65px;
+    height: 65px;
+    background: radial-gradient(circle at 30% 30%, #7c3aed 0%, #0284c7 90%);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 20px rgba(124, 58, 237, 0.6), inset 0 -3px 8px rgba(0,0,0,0.35);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    animation: pulse-hex-center 2s ease-in-out infinite alternate;
+    z-index: 5;
+}
+
+@keyframes pulse-hex-center {
+    0% { transform: scale(0.93) rotate(0deg); filter: drop-shadow(0 0 10px rgba(124, 58, 237, 0.5)); }
+    100% { transform: scale(1.07) rotate(10deg); filter: drop-shadow(0 0 25px rgba(2, 132, 199, 0.85)); }
+}
+
+.tech-pulse-dot {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #ffffff;
+    border-radius: 50%;
+    top: -2px;
+    left: 0;
+    box-shadow: 0 0 8px #ffffff, 0 0 15px var(--secondary);
+    animation: pulse-move 2s linear infinite;
+}
+
+.tech-arrow-chevron {
+    color: var(--secondary) !important;
+    width: 20px;
+    height: 20px;
+    margin-left: -5px;
+    animation: arrow-pulse 1.5s infinite;
+}
+
+@keyframes pulse-move {
+    0% { left: 0%; opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { left: 100%; opacity: 0; }
+}
+
+@keyframes arrow-pulse {
+    0%, 100% { transform: translateX(0); opacity: 0.6; }
+    50% { transform: translateX(4px); opacity: 1; }
+}
+
+/* Slide 1 Floating Tech Glowing Particles & Crosshairs Styles */
+.tech-float-glowdot, .tech-float-crosshair {
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+.float-fast-1 { animation: float-fast-y 1.4s ease-in-out infinite alternate, pulse-blink-fast 1s infinite alternate; }
+.float-fast-2 { animation: float-fast-y-inv 1.8s ease-in-out infinite alternate, pulse-blink-fast 1.3s infinite alternate-reverse; }
+.float-fast-3 { animation: float-fast-x-y 1.6s ease-in-out infinite alternate, pulse-blink-fast 1.1s infinite alternate; }
+.float-fast-4 { animation: float-fast-y 2s ease-in-out infinite alternate, pulse-blink-fast 1.5s infinite alternate; }
+.float-fast-5 { animation: float-fast-x 1.2s ease-in-out infinite alternate, pulse-blink-fast 0.9s infinite alternate-reverse; }
+
+@keyframes float-fast-y {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-12px); }
+}
+
+@keyframes float-fast-y-inv {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(12px); }
+}
+
+@keyframes float-fast-x {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(10px); }
+}
+
+@keyframes float-fast-x-y {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(-8px, -10px); }
+}
+
+@keyframes pulse-blink-fast {
+    0% { opacity: 0.35; filter: brightness(0.8); }
+    100% { opacity: 1; filter: brightness(1.3); }
+}
+
+.flow-hdr {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--primary);
+    margin-bottom: 8px;
+}
+
+.flow-subhdr {
+    font-size: 14px;
+    font-weight: 700;
+    color: #64748b;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+}
+
+.flow-bullets {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.flow-bullets li {
+    font-size: 15px;
+    color: #475569;
+    position: relative;
+    padding-left: 18px;
+    list-style: none;
+}
+
+.flow-bullets li span {
+    color: var(--primary);
+    position: absolute;
+    left: 0;
+}
+
+.flow-center-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.flow-text-bold {
+    font-weight: 800;
+    color: #ffffff;
+    text-align: center;
+}
+
+/* Slide 8 (Acoustic System) - Side-by-Side Columns */
+.sys-col {
+    position: absolute;
+    background: #ffffff !important;
+    border: 1px solid rgba(2, 132, 199, 0.12) !important;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02) !important;
+    transition: transform 0.35s var(--transition-curve), box-shadow 0.35s ease, border-color 0.35s ease;
+    padding: 20px !important;
+    overflow: hidden;
+}
+
+.sys-col:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 36px rgba(2, 132, 199, 0.12) !important;
+    border-color: rgba(2, 132, 199, 0.35) !important;
+    z-index: 8;
+}
+
+.sys-col-img-wrapper {
+    transition: transform 0.35s var(--transition-curve), box-shadow 0.35s ease;
+    border: 1px solid rgba(2, 132, 199, 0.12);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.sys-col-img-wrapper img {
+    transition: transform 0.5s var(--transition-curve) !important;
+}
+
+.sys-col:hover .sys-col-img-wrapper img {
+    transform: scale(1.1) !important;
+}
+
+.sys-col:hover .sys-col-img-wrapper {
+    transform: scale(1.02);
+    box-shadow: 0 8px 20px rgba(2, 132, 199, 0.15);
+}
+
+
+.sys-module-card {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 40px 0 15px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.sys-module-title {
+    font-size: 19px;
+    font-weight: 800;
+    color: var(--primary);
+    margin-bottom: 8px;
+    border-left: 4px solid var(--primary);
+    padding-left: 8px;
+    line-height: 1.2;
+}
+
+.sys-module-desc {
+    font-size: 15px;
+    color: #475569;
+    line-height: 1.5;
+    font-weight: 500;
+}
+
+.system-sub-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--primary);
+    background-color: rgba(2, 132, 199, 0.08);
+    padding: 4px 16px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.system-full-summary-card {
+    font-size: 16px;
+    font-weight: 700;
+    color: #475569;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* Slide 9 (Thank You) */
+.slide[data-slide-index="9"] {
+    background-image: url('assets/images/image21.png') !important;
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    overflow: hidden !important;
+}
+
+.slide[data-slide-index="9"] .slide-stage {
+    background: transparent !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+}
+
+.thank-you-title {
+    font-size: 72px;
+    font-weight: 800;
+    color: #ffffff;
+    text-align: center;
+    letter-spacing: 0.05em;
+    animation: text-glow 2.5s ease-in-out infinite alternate;
+}
+
+.thank-you-sub {
+    font-size: 20px;
+    font-weight: 400;
+    color: #cbd5e1;
+    text-align: center;
+    letter-spacing: 0.02em;
+}
+
+/* Tech Keyframe Animations */
+@keyframes text-glow {
+    from {
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.4), 0 0 20px rgba(255, 255, 255, 0.2);
+    }
+    to {
+        text-shadow: 0 0 25px rgba(255, 255, 255, 0.8), 0 0 45px rgba(2, 132, 199, 0.8), 0 0 60px rgba(2, 132, 199, 0.5);
+    }
+}
+
+@keyframes spin-slow {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.spinning-ai-icon {
+    animation: spin-slow 12s linear infinite;
+    filter: drop-shadow(0 0 5px rgba(2, 132, 199, 0.4));
+}
+
+/* ==========================================================================
+   HUD Overlay Controls UI
+   ========================================================================== */
+
+.hud-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 100;
+    color: var(--text-dark);
+    pointer-events: none;
+    transition: opacity 0.4s ease, color 0.5s ease;
+}
+
+.hud-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    opacity: 0.85;
+}
+
+.slide-counter {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.slide-counter strong {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--primary);
+    transition: color 0.5s ease;
+}
+
+body.slide-9-active .hud-header {
+    color: var(--text-light);
+}
+
+body.slide-9-active .slide-counter strong {
+    color: #ffffff;
+}
+
+/* Vertical Dots Navigation */
+.nav-dots {
+    position: fixed;
+    right: 35px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    z-index: 100;
+    transition: opacity 0.4s ease;
+}
+
+.dot-btn {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.2);
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s var(--transition-curve), background-color 0.3s ease;
+}
+
+.dot-btn:hover {
+    transform: scale(1.3);
+    background-color: var(--primary);
+}
+
+.dot-btn.active {
+    background-color: var(--primary);
+    transform: scale(1.5);
+    box-shadow: 0 0 8px rgba(var(--primary-rgb), 0.5);
+}
+
+body.slide-9-active .dot-btn {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+body.slide-9-active .dot-btn.active {
+    background-color: #ffffff;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+}
+
+/* Bottom HUD Control Panel Capsule */
+.hud-controls-panel {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 18px;
+    background-color: var(--hud-bg-light);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 10px 24px;
+    border-radius: 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    z-index: 100;
+    transition: opacity 0.4s ease, transform 0.4s ease, background-color 0.5s ease, border-color 0.5s ease;
+}
+
+.hud-controls-panel:hover {
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+}
+
+.hud-btn {
+    background: none;
+    border: none;
+    color: var(--text-dark);
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.hud-btn:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    color: var(--primary);
+    transform: scale(1.1);
+}
+
+.hud-btn:active {
+    transform: scale(0.95);
+}
+
+.hud-btn i {
+    width: 20px;
+    height: 20px;
+}
+
+body.slide-9-active .hud-controls-panel {
+    background-color: var(--hud-bg-dark);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+body.slide-9-active .hud-btn {
+    color: var(--text-light);
+}
+
+body.slide-9-active .hud-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+}
+
+/* Idle HUD Fading */
+.hud-fade-out {
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+.hud-controls-panel.hud-fade-out {
+    transform: translate(-50%, 20px) !important;
+}
+
+.hud-btn#playBtn.autoplay-active {
+    color: #10b981;
+}
+
+body.slide-9-active .hud-btn#playBtn.autoplay-active {
+    color: #34d399;
+}
+
+/* Fullscreen mode hides cursor */
+.fullscreen-hide-cursor {
+    cursor: none;
+}
+
+/* Canvas background on slide 9 */
+.slide9-particle-canvas {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0.35;
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 768px) {
+    .hud-header {
+        padding: 0 20px;
+        height: 50px;
+    }
+    
+    .hud-title {
+        display: none;
+    }
+    
+    .nav-dots {
+        right: 10px;
+        gap: 8px;
+    }
+    
+    .hud-controls-panel {
+        bottom: 15px;
+        padding: 6px 16px;
+    }
+    
+    .hud-btn {
+        width: 32px;
+        height: 32px;
+    }
+}
