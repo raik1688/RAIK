@@ -30,102 +30,181 @@
             
             <!-- SLIDE 1 -->
             <section class="slide" data-slide-index="1">
-                <div class="slide-stage">
-                    <img src="assets/images/first_page_laptop_hd.png" alt="Raik Profile" style="position: absolute; left: 540px; top: 40px; width: 680px; height: 640px; object-fit: contain; z-index: 2;">
-                    
-                    <!-- Floating Tech Elements (Rapid Glowing Particles & Crosshairs) -->
-                    <div class="tech-float-glowdot float-fast-1" style="position: absolute; left: 520px; top: 180px; width: 6px; height: 6px; background: #0284c7; box-shadow: 0 0 10px #0284c7; border-radius: 50%; z-index: 3;"></div>
-                    <div class="tech-float-glowdot float-fast-2" style="position: absolute; left: 1160px; top: 140px; width: 8px; height: 8px; background: #7c3aed; box-shadow: 0 0 12px #7c3aed; border-radius: 50%; z-index: 3;"></div>
-                    <div class="tech-float-glowdot float-fast-3" style="position: absolute; left: 580px; top: 520px; width: 5px; height: 5px; background: #0284c7; box-shadow: 0 0 8px #0284c7; border-radius: 50%; z-index: 3;"></div>
-                    <div class="tech-float-glowdot float-fast-4" style="position: absolute; left: 1120px; top: 460px; width: 7px; height: 7px; background: #7c3aed; box-shadow: 0 0 10px #7c3aed; border-radius: 50%; z-index: 3;"></div>
-                    <div class="tech-float-glowdot float-fast-5" style="position: absolute; left: 880px; top: 80px; width: 6px; height: 6px; background: #0284c7; box-shadow: 0 0 10px #0284c7; border-radius: 50%; z-index: 3;"></div>
-                    <div class="tech-float-glowdot float-fast-1" style="position: absolute; left: 1040px; top: 580px; width: 5px; height: 5px; background: #7c3aed; box-shadow: 0 0 8px #7c3aed; border-radius: 50%; z-index: 3;"></div>
-                    <div class="tech-float-glowdot float-fast-2" style="position: absolute; left: 740px; top: 600px; width: 6px; height: 6px; background: #0284c7; box-shadow: 0 0 10px #0284c7; border-radius: 50%; z-index: 3;"></div>
-                    
-                    <!-- Tech Crosshairs -->
-                    <div class="tech-float-crosshair float-fast-3" style="position: absolute; left: 660px; top: 90px; z-index: 3;">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(2, 132, 199, 0.6)" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 2v20M2 12h20"/></svg>
+                <div class="slide-stage" style="background: #ffffff;">
+                    <!-- Canvas for Slide 1 Floating Particles -->
+                    <canvas id="slide1Canvas" class="slide1-particle-canvas"></canvas>
+
+                    <!-- Cover Right Image & Floating Acoustics/AI Animations -->
+                    <div class="fade-up-item delay-1" style="position: absolute; left: 480px; top: 70px; width: 660px; height: 630px; z-index: 2;">
+                        <!-- Concentric Outward Ground Ripples (Behind laptop) -->
+                        <div class="ground-ripple-container" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none;">
+                            <svg width="660" height="630" viewBox="0 0 660 630" style="overflow: visible; width: 100%; height: 100%;">
+                                <circle cx="380" cy="430" r="30" fill="none" stroke="rgba(79, 70, 229, 0.22)" stroke-width="1.0" vector-effect="non-scaling-stroke" class="ground-ripple ripple-1" />
+                                <circle cx="380" cy="430" r="30" fill="none" stroke="rgba(79, 70, 229, 0.22)" stroke-width="1.0" vector-effect="non-scaling-stroke" class="ground-ripple ripple-2" />
+                                <circle cx="380" cy="430" r="30" fill="none" stroke="rgba(79, 70, 229, 0.22)" stroke-width="1.0" vector-effect="non-scaling-stroke" class="ground-ripple ripple-3" />
+                                <circle cx="380" cy="430" r="30" fill="none" stroke="rgba(79, 70, 229, 0.22)" stroke-width="1.0" vector-effect="non-scaling-stroke" class="ground-ripple ripple-4" />
+                                <circle cx="380" cy="430" r="30" fill="none" stroke="rgba(79, 70, 229, 0.22)" stroke-width="1.0" vector-effect="non-scaling-stroke" class="ground-ripple ripple-5" />
+                                <!-- Tilted Planetary Orbit Path Line (Single Ring) -->
+                                <ellipse cx="330" cy="315" rx="270" ry="120" fill="none" stroke="rgba(79, 70, 229, 0.15)" stroke-width="1.2" stroke-dasharray="4 6" transform="rotate(-10, 330, 315)" />
+                            </svg>
+                        </div>
+
+                        <!-- Thinner laptop wireframe facing right-up with ground ripples -->
+                        <img src="assets/images/laptop_thin_right_ripple_clean_v2.png" alt="Raik Profile" style="width: 100%; height: 100%; object-fit: contain; position: relative; z-index: 2;">
+                        <!-- Floating Nodes Group (Orbiting Planets) -->
+                        <!-- 1. Acoustics Speaker Node (Inner Shell) -->
+                        <div class="slide1-orbit-node" style="position: absolute; width: 68px; height: 110px; z-index: 5; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; pointer-events: auto;">
+                            <div class="slide1-float-node ripple-delay-1">
+                                <i data-lucide="volume-2"></i>
+                            </div>
+                            <span class="slide1-float-label" style="margin-top: 8px; position: static;">ACOUSTICS</span>
+                            <span class="slide1-float-sub" style="font-size: 8.5px; color: var(--text-muted); font-weight: 700; margin-top: 2px; letter-spacing: 0.03em; text-transform: uppercase; white-space: nowrap;">[SYSTEM INTEGRATION]</span>
+                        </div>
+                        
+                        <!-- 2. Sound Wave Node (Inner Shell) -->
+                        <div class="slide1-orbit-node" style="position: absolute; width: 68px; height: 110px; z-index: 5; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; pointer-events: auto;">
+                            <div class="slide1-float-node ripple-delay-2">
+                                <i data-lucide="activity"></i>
+                            </div>
+                            <span class="slide1-float-label" style="margin-top: 8px; position: static;">WAVEFORM</span>
+                            <span class="slide1-float-sub" style="font-size: 8.5px; color: var(--text-muted); font-weight: 700; margin-top: 2px; letter-spacing: 0.03em; text-transform: uppercase; white-space: nowrap;">[FFT & WAVE ANALYZER]</span>
+                        </div>
+                        
+                        <!-- 3. Brain Node (Middle Shell) -->
+                        <div class="slide1-orbit-node" style="position: absolute; width: 68px; height: 110px; z-index: 5; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; pointer-events: auto;">
+                            <div class="slide1-float-node ripple-delay-3">
+                                <i data-lucide="brain"></i>
+                            </div>
+                            <span class="slide1-float-label" style="margin-top: 8px; position: static;">COGNITIVE</span>
+                            <span class="slide1-float-sub" style="font-size: 8.5px; color: var(--text-muted); font-weight: 700; margin-top: 2px; letter-spacing: 0.03em; text-transform: uppercase; white-space: nowrap;">[NEURAL NETWORK]</span>
+                        </div>
+                        
+                        <!-- 4. AI Badge Node (Middle Shell) -->
+                        <div class="slide1-orbit-node" style="position: absolute; width: 68px; height: 110px; z-index: 5; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; pointer-events: auto;">
+                            <div class="slide1-float-node ripple-delay-1">
+                                <span style="font-size: 20px; font-weight: 800; color: var(--primary); font-family: var(--font-heading) !important;">AI</span>
+                            </div>
+                            <span class="slide1-float-label" style="margin-top: 8px; position: static;">AI AUDIO</span>
+                            <span class="slide1-float-sub" style="font-size: 8.5px; color: var(--text-muted); font-weight: 700; margin-top: 2px; letter-spacing: 0.03em; text-transform: uppercase; white-space: nowrap;">[COMSOL ALGORITHM]</span>
+                        </div>
+                        
+                        <!-- 5. Human Profile Node (Middle Shell) -->
+                        <div class="slide1-orbit-node" style="position: absolute; width: 68px; height: 110px; z-index: 5; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; pointer-events: auto;">
+                            <div class="slide1-float-node ripple-delay-2">
+                                <i data-lucide="user"></i>
+                            </div>
+                            <span class="slide1-float-label" style="margin-top: 8px; position: static;">FREQUENCY</span>
+                            <span class="slide1-float-sub" style="font-size: 8.5px; color: var(--text-muted); font-weight: 700; margin-top: 2px; letter-spacing: 0.03em; text-transform: uppercase; white-space: nowrap;">[DSP OPTIMIZER]</span>
+                        </div>
+                        
+                        <!-- 6. Microphone Node (Outer Shell) -->
+                        <div class="slide1-orbit-node" style="position: absolute; width: 68px; height: 110px; z-index: 5; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; pointer-events: auto;">
+                            <div class="slide1-float-node ripple-delay-3">
+                                <i data-lucide="mic"></i>
+                            </div>
+                            <span class="slide1-float-label" style="margin-top: 8px; position: static;">MEASUREMENT</span>
+                            <span class="slide1-float-sub" style="font-size: 8.5px; color: var(--text-muted); font-weight: 700; margin-top: 2px; letter-spacing: 0.03em; text-transform: uppercase; white-space: nowrap;">[ACOUSTIC TESTING]</span>
+                        </div>
+                        
+                        <!-- 7. Cube Node (Outer Shell) -->
+                        <div class="slide1-orbit-node" style="position: absolute; width: 68px; height: 110px; z-index: 5; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; pointer-events: auto;">
+                            <div class="slide1-float-node ripple-delay-1">
+                                <i data-lucide="box"></i>
+                            </div>
+                            <span class="slide1-float-label" style="margin-top: 8px; position: static;">MECHANISM</span>
+                            <span class="slide1-float-sub" style="font-size: 8.5px; color: var(--text-muted); font-weight: 700; margin-top: 2px; letter-spacing: 0.03em; text-transform: uppercase; white-space: nowrap;">[3D CAD STRUCT]</span>
+                        </div>
                     </div>
-                    <div class="tech-float-crosshair float-fast-4" style="position: absolute; left: 1200px; top: 320px; z-index: 3;">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(124, 58, 237, 0.6)" stroke-width="2"><path d="M12 2v6M12 16v6M2 12h6M16 12h6"/></svg>
-                    </div>
-                    <div class="tech-float-crosshair float-fast-5" style="position: absolute; left: 960px; top: 560px; z-index: 3;">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(2, 132, 199, 0.5)" stroke-width="2.5"><path d="M12 2v20M2 12h20" transform="rotate(45 12 12)"/></svg>
+                    
+                    <div class="shape slide1-subtitle fade-up-item" style="left: 80px; top: 180px; width: 450px; font-size: 64px; font-weight: 800; color: var(--text-main); letter-spacing: -0.03em; font-family: var(--font-heading) !important; line-height: 1.15;">
+                        Professional<br>Profile
                     </div>
                     
-                    <div class="shape slide1-subtitle" style="left: 31px; top: 213px; width: 788px; height: 223px; font-size: 56px; font-weight: 800; color: #3b4252; letter-spacing: -0.01em;">
-                        Professional Profile
-                    </div>
-                    
-                    <div class="hero-name-card" style="left: 57px; top: 480px; width: 465px; height: 168px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; border: 2px solid var(--primary); border-radius: 8px; background: rgba(2, 132, 199, 0.02); position: absolute; z-index: 10; padding: 10px;">
-                        <div class="slide1-name" style="font-size: 38px; font-weight: 800; color: #0f172a; margin-bottom: 6px;">蘇健偉 Raik</div>
-                        <div class="slide1-title" style="font-size: 18px; font-weight: 700; color: var(--primary); letter-spacing: 0.05em; text-transform: uppercase;">R&D Manager / Acoustic</div>
-                        <div class="slide1-title" style="font-size: 18px; font-weight: 700; color: var(--primary); letter-spacing: 0.05em; text-transform: uppercase; margin-top: 4px;">Mechanical Integration</div>
+                    <div class="hero-name-card fade-up-item delay-2" style="left: 80px; top: 440px; width: 440px; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; text-align: left; position: absolute; z-index: 10;">
+                        <div class="slide1-name" style="font-size: 38px; font-weight: 800; color: var(--text-main); margin-bottom: 12px; font-family: var(--font-heading) !important;">
+                            蘇健偉 Raik
+                        </div>
+                        <div class="slide1-title" style="font-size: 14px; font-weight: 600; color: var(--text-muted); letter-spacing: 0.05em; text-transform: uppercase;">R&D Manager / Acoustic & Mechanical Integration</div>
                     </div>
                 </div>
             </section>
             
             <!-- SLIDE 2 -->
             <section class="slide" data-slide-index="2">
-                <div class="slide-stage" style="background: radial-gradient(circle at 50% 50%, #ffffff 0%, #f8fafc 100%);">
-                    <div class="slide-title-standard">Educational Background</div>
- 
-                    
-                    <!-- Vertical Timeline Axis -->
-                    <div class="timeline-axis" style="left: 640px; top: 120px; bottom: 120px; width: 4px; background: linear-gradient(180deg, var(--primary), var(--secondary)); border-radius: 2px; position: absolute; z-index: 2;"></div>
-                    
-                    <!-- Timeline Card 1: Southeast University (Left Top) -->
-                    <div class="timeline-card" style="left: 131px; top: 142px; width: 450px; height: 200px; text-align: right; display: flex; flex-direction: column; align-items: flex-end;">
-                        <div class="edu-year" style="font-size: 20px;">2002-2006</div>
-                        <div class="edu-school" style="font-size: 22px; font-weight: 800; color: #0f172a; margin-top: 10px; display: flex; align-items: center; justify-content: flex-end; gap: 8px;">
-                            <span>Southeast University</span>
-                            <i data-lucide="graduation-cap" style="width: 22px; height: 22px; color: var(--primary);"></i>
+                <div class="slide-stage" style="background: #ffffff;">
+                    <div class="slide-title-standard fade-up-item">Educational & Work Background</div>
+                     
+                    <!-- Left Column: Education -->
+                    <div class="competency-card fade-up-item delay-1" style="left: 80px; top: 150px; width: 540px; height: 430px; padding: 35px; display: flex; flex-direction: column; justify-content: flex-start; border: 1px solid var(--border-color) !important; background: #ffffff !important;">
+                        <div style="display: flex; align-items: center; gap: 15px; border-bottom: 1px solid var(--border-color); padding-bottom: 15px; margin-bottom: 25px;">
+                            <div class="minimal-icon-badge" style="margin-bottom: 0; color: var(--primary);"><i data-lucide="graduation-cap"></i></div>
+                            <span style="font-size: 24px; font-weight: 800; color: var(--text-main);">學歷背景</span>
                         </div>
-                        <div class="edu-school-sub" style="font-size: 17px; color: #475569; margin-top: 4px;">(Department of Mechanical Engineering)</div>
-                        <div class="edu-detail" style="font-size: 17px; color: #475569; margin-top: 10px; line-height: 1.5; font-weight: 500;">機構基礎、力學、材料與 2D/3D CAD 模流分析</div>
-                        <div class="timeline-node" style="position: absolute; right: -67px; top: 22px; width: 14px; height: 14px; border-radius: 50%; background: var(--primary); border: 3px solid #ffffff; box-shadow: 0 0 8px var(--primary); z-index: 5;"></div>
+                        
+                        <div style="display: flex; flex-direction: column; gap: 25px;">
+                            <!-- Southeast University -->
+                            <div style="display: flex; flex-direction: column; gap: 6px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <span style="font-size: 19px; font-weight: 800; color: var(--text-main);">Southeast University</span>
+                                    <span style="font-size: 13px; font-weight: 700; color: var(--primary); border: 1px solid var(--primary); padding: 2px 10px; border-radius: 20px;">2002 - 2006</span>
+                                </div>
+                                <div style="font-size: 14px; color: var(--text-muted); font-weight: 600;">Mechanical Engineering</div>
+                                <div style="font-size: 14px; color: var(--text-muted); line-height: 1.5; font-weight: 500; margin-top: 3px;">
+                                    ▪ 機構基礎、力學、材料與 2D/3D CAD 模流分析
+                                </div>
+                            </div>
+                            
+                            <!-- NTUST -->
+                            <div style="display: flex; flex-direction: column; gap: 6px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <span style="font-size: 19px; font-weight: 800; color: var(--text-main);">NTUST</span>
+                                    <span style="font-size: 13px; font-weight: 700; color: var(--primary); border: 1px solid var(--primary); padding: 2px 10px; border-radius: 20px;">2025 - 2027</span>
+                                </div>
+                                <div style="font-size: 14px; color: var(--text-muted); font-weight: 600;">Master, EMRD</div>
+                                <div style="font-size: 14px; color: var(--text-muted); line-height: 1.5; font-weight: 500; margin-top: 3px;">
+                                    ▪ 結合 AI、科技分析與產品開發管理，培養研發管理與跨領域整合。
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     
-                    <!-- Timeline Card 2: Behavior Tech (Left Bottom) -->
-                    <div class="timeline-card" style="left: 131px; top: 413px; width: 450px; height: 200px; text-align: right; display: flex; flex-direction: column; align-items: flex-end;">
-                        <div class="edu-year" style="font-size: 20px;">2007-2009</div>
-                        <div class="edu-school" style="font-size: 22px; font-weight: 800; color: #0f172a; margin-top: 10px; display: flex; align-items: center; justify-content: flex-end; gap: 8px;">
-                            <span>Behavior Tech Computer Corp</span>
-                            <i data-lucide="briefcase" style="width: 22px; height: 22px; color: var(--primary);"></i>
+                    <!-- Right Column: Experience -->
+                    <div class="competency-card fade-up-item delay-2" style="left: 660px; top: 150px; width: 540px; height: 430px; padding: 35px; display: flex; flex-direction: column; justify-content: flex-start; border: 1px solid var(--border-color) !important; background: #ffffff !important;">
+                        <div style="display: flex; align-items: center; gap: 15px; border-bottom: 1px solid var(--border-color); padding-bottom: 15px; margin-bottom: 25px;">
+                            <div class="minimal-icon-badge" style="margin-bottom: 0; color: var(--primary);"><i data-lucide="briefcase"></i></div>
+                            <span style="font-size: 24px; font-weight: 800; color: var(--text-main);">工作經歷</span>
                         </div>
-                        <div class="edu-school-sub" style="font-size: 17px; color: #475569; margin-top: 4px;">(Mechanical Engineer)</div>
-                        <div class="edu-detail" style="font-size: 17px; color: #475569; margin-top: 10px; line-height: 1.5; font-weight: 500;">鍵盤、滑鼠與 EPC 電腦機構設計、原型製作與模具檢討。</div>
-                        <div class="timeline-node" style="position: absolute; right: -67px; top: 22px; width: 14px; height: 14px; border-radius: 50%; background: var(--primary); border: 3px solid #ffffff; box-shadow: 0 0 8px var(--primary); z-index: 5;"></div>
-                    </div>
- 
-                    <!-- Timeline Card 3: NTUST (Right Top) -->
-                    <div class="timeline-card" style="left: 699px; top: 145px; width: 450px; height: 200px; text-align: left; display: flex; flex-direction: column; align-items: flex-start;">
-                        <div class="edu-year" style="background-color: rgba(124, 58, 237, 0.08); color: var(--secondary); font-size: 20px;">2025-2027</div>
-                        <div class="edu-school" style="font-size: 22px; font-weight: 800; color: #0f172a; margin-top: 10px; display: flex; align-items: center; gap: 8px;">
-                            <i data-lucide="graduation-cap" style="width: 22px; height: 22px; color: var(--secondary);"></i>
-                            <span>NTUST (Master's Degree, EMRD)</span>
+                        
+                        <div style="display: flex; flex-direction: column; gap: 25px;">
+                            <!-- Behavior Tech -->
+                            <div style="display: flex; flex-direction: column; gap: 6px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <span style="font-size: 19px; font-weight: 800; color: var(--text-main);">Behavior Tech</span>
+                                    <span style="font-size: 13px; font-weight: 700; color: var(--primary); border: 1px solid var(--primary); padding: 2px 10px; border-radius: 20px;">2007 - 2009</span>
+                                </div>
+                                <div style="font-size: 14px; color: var(--text-muted); font-weight: 600;">Mechanical Engineer</div>
+                                <div style="font-size: 14px; color: var(--text-muted); line-height: 1.5; font-weight: 500; margin-top: 3px;">
+                                    ▪ 鍵盤、滑鼠與 EPC 電腦機構設計、原型製作與模具檢討。
+                                </div>
+                            </div>
+                            
+                            <!-- ZYLUX -->
+                            <div style="display: flex; flex-direction: column; gap: 6px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <span style="font-size: 19px; font-weight: 800; color: var(--text-main);">ZYLUX</span>
+                                    <span style="font-size: 13px; font-weight: 700; color: var(--primary); border: 1px solid var(--primary); padding: 2px 10px; border-radius: 20px;">2009 - NOW</span>
+                                </div>
+                                <div style="font-size: 14px; color: var(--text-muted); font-weight: 600;">R&D Manager</div>
+                                <div style="font-size: 14px; color: var(--text-muted); line-height: 1.5; font-weight: 500; margin-top: 3px;">
+                                    ▪ NB, AIO，Soundbar 聲學產品開發規劃與 Road map 規劃<br>
+                                    ▪ 聲學 COMSOL 模擬分析、跨部門研發管理。
+                                </div>
+                            </div>
                         </div>
-                        <div class="edu-school-sub" style="font-size: 17px; color: #475569; margin-top: 4px; font-weight: 500;">結合 AI、科技分析與產品開發管理</div>
-                        <div class="edu-detail" style="font-size: 17px; color: #475569; margin-top: 10px; line-height: 1.5; font-weight: 500;">研發管理與跨領域整合。</div>
-                        <div class="timeline-node" style="position: absolute; left: -67px; top: 22px; width: 14px; height: 14px; border-radius: 50%; background: var(--secondary); border: 3px solid #ffffff; box-shadow: 0 0 8px var(--secondary); z-index: 5;"></div>
-                    </div>
- 
-                    <!-- Timeline Card 4: ZYLUX (Right Bottom) -->
-                    <div class="timeline-card" style="left: 699px; top: 403px; width: 450px; height: 200px; text-align: left; display: flex; flex-direction: column; align-items: flex-start;">
-                        <div class="edu-year" style="background-color: rgba(124, 58, 237, 0.08); color: var(--secondary); font-size: 20px;">2009-NOW</div>
-                        <div class="edu-school" style="font-size: 22px; font-weight: 800; color: #0f172a; margin-top: 10px; display: flex; align-items: center; gap: 8px;">
-                            <i data-lucide="briefcase" style="width: 22px; height: 22px; color: var(--secondary);"></i>
-                            <span>ZYLUX (R&D Manager)</span>
-                        </div>
-                        <div class="edu-detail" style="font-size: 17px; color: #475569; margin-top: 10px; line-height: 1.6; font-weight: 500;">
-                            ▪ NB, AIO，Soundbar 聲學產品開發規劃<br>
-                            ▪ Road map 規劃、COMSOL模擬、研發管理。
-                        </div>
-                        <div class="timeline-node" style="position: absolute; left: -67px; top: 22px; width: 14px; height: 14px; border-radius: 50%; background: var(--secondary); border: 3px solid #ffffff; box-shadow: 0 0 8px var(--secondary); z-index: 5;"></div>
                     </div>
  
                     <!-- Bottom center summary bar -->
-                    <div class="edu-summary-bar-card" style="left: 380px; top: 645px; width: 520px; height: 42px; font-size: 20px; font-weight: 700; color: #0f172a; border-left: 4px solid var(--primary); background: #ffffff; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(2, 132, 199, 0.15); border-left: 4px solid var(--primary); border-radius: 4px;">
+                    <div class="fade-up-item delay-4" style="position: absolute; left: 80px; top: 595px; width: 1120px; height: 50px; font-size: 16px; font-weight: 700; color: var(--text-main); display: flex; align-items: center; justify-content: center; border-radius: 15px; border: 1px solid var(--border-color); background: #ffffff;">
                         從技術開發到研發流程優化的能力
                     </div>
                 </div>
@@ -133,70 +212,93 @@
             
             <!-- SLIDE 3 -->
             <section class="slide" data-slide-index="3">
-                <div class="slide-stage">
-                    <div class="slide-title-standard">Core Competencies</div>
+                <div class="slide-stage" style="background: #ffffff;">
+                    <div class="slide-title-standard fade-up-item">Core Competencies</div>
 
-
-                    <!-- Top Card: System Integration -->
-                    <div class="competency-card" style="left: 270px; top: 135px; width: 880px; height: 200px; background: rgba(2, 132, 199, 0.02); border: 1px solid rgba(2, 132, 199, 0.1); border-radius: 8px; padding: 20px;">
-                        <div class="comp-title" style="font-size: 22px; font-weight: 800; color: var(--primary); margin-bottom: 12px; border-bottom: 2px dashed rgba(2, 132, 199, 0.15); padding-bottom: 8px; display: flex; align-items: center; gap: 8px;">
-                            <i data-lucide="network" style="width: 22px; height: 22px;"></i>
-                            <span>系統整合設計研發 (15+年經驗)</span>
-                        </div>
-                        <div class="comp-item">
-                            <i data-lucide="arrow-right-circle" style="position: absolute; left: 0; top: 4px; width: 15px; height: 15px; color: var(--primary);"></i>
-                            不只是單點設計，而是從系統角度看產品
-                        </div>
-                        <div class="comp-item">
-                            <i data-lucide="arrow-right-circle" style="position: absolute; left: 0; top: 4px; width: 15px; height: 15px; color: var(--primary);"></i>
-                            整合機構、聲學、模擬、工廠與客戶需求
-                        </div>
-                        <div class="comp-item">
-                            <i data-lucide="arrow-right-circle" style="position: absolute; left: 0; top: 4px; width: 15px; height: 15px; color: var(--primary);"></i>
-                            與NB品牌與 ODM 合作，掌握從前期規劃到量產的完整生命週期
+                    <!-- Left Card: System Integration -->
+                    <div class="competency-card fade-up-item delay-1" style="left: 80px; top: 150px; width: 350px; height: 490px; padding: 30px; display: flex; flex-direction: column; justify-content: flex-start; border: 1px solid var(--border-color) !important; background: #ffffff !important;">
+                        <div>
+                            <div class="minimal-icon-badge" style="color: var(--primary);"><i data-lucide="network"></i></div>
+                            <div style="font-size: 22px; font-weight: 800; color: var(--text-main); margin-bottom: 25px; line-height: 1.3;">系統整合設計研發<br><span style="font-size: 15px; color: var(--primary); font-weight: 700;">(15+年經驗)</span></div>
+                            
+                            <div style="display: flex; flex-direction: column; gap: 20px; text-align: left;">
+                                <div style="display: flex; flex-direction: column; gap: 6px;">
+                                    <div style="font-size: 16px; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 8px;">
+                                        <span style="width: 6px; height: 6px; background-color: var(--primary); border-radius: 50%;"></span>
+                                        系統化觀點
+                                    </div>
+                                    <div style="font-size: 14px; color: var(--text-muted); line-height: 1.6; font-weight: 500; padding-left: 14px;">
+                                        不局限於單點設計，而是從整機系統角度出發，全面整合機構、聲學與工廠量產限制。
+                                    </div>
+                                </div>
+                                <div style="display: flex; flex-direction: column; gap: 6px;">
+                                    <div style="font-size: 16px; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 8px;">
+                                        <span style="width: 6px; height: 6px; background-color: var(--primary); border-radius: 50%;"></span>
+                                        量產生命週期
+                                    </div>
+                                    <div style="font-size: 14px; color: var(--text-muted); line-height: 1.6; font-weight: 500; padding-left: 14px;">
+                                        與 NB 品牌及知名 ODM 深度合作，主導從前期概念規劃到量產的完整開發生命週期。
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-
-                    <!-- Bottom Left Card: Mechanical Engineering -->
-                    <div class="competency-card" style="left: 155px; top: 395px; width: 410px; height: 235px; background: rgba(2, 132, 199, 0.02); border: 1px solid rgba(2, 132, 199, 0.1); border-radius: 8px; padding: 20px;">
-                        <div class="comp-title" style="font-size: 22px; font-weight: 800; color: var(--primary); margin-bottom: 12px; border-bottom: 2px dashed rgba(2, 132, 199, 0.15); padding-bottom: 8px; display: flex; align-items: center; gap: 8px;">
-                            <i data-lucide="wrench" style="width: 20px; height: 20px;"></i>
-                            <span>機械工程設計 (15年經驗)</span>
-                        </div>
-                        <div class="comp-item">
-                            <i data-lucide="arrow-right-circle" style="position: absolute; left: 0; top: 4px; width: 15px; height: 15px; color: var(--primary);"></i>
-                            熟悉塑膠件、機構件與模具開發
-                        </div>
-                        <div class="comp-item">
-                            <i data-lucide="arrow-right-circle" style="position: absolute; left: 0; top: 4px; width: 15px; height: 15px; color: var(--primary);"></i>
-                            評估空間配置、結構強度與組裝可行性
-                        </div>
-                        <div class="comp-item">
-                            <i data-lucide="arrow-right-circle" style="position: absolute; left: 0; top: 4px; width: 15px; height: 15px; color: var(--primary);"></i>
-                            精通 Creo，Solid Works，Auto CAD
+ 
+                    <!-- Center Card: Mechanical Engineering (Speaker drawing removed) -->
+                    <div class="competency-card fade-up-item delay-2" style="left: 465px; top: 150px; width: 350px; height: 490px; padding: 30px; display: flex; flex-direction: column; justify-content: flex-start; border: 1px solid var(--border-color) !important; background: #ffffff !important;">
+                        <div>
+                            <div class="minimal-icon-badge" style="color: var(--primary);"><i data-lucide="wrench"></i></div>
+                            <div style="font-size: 22px; font-weight: 800; color: var(--text-main); margin-bottom: 25px; line-height: 1.3;">機械工程設計<br><span style="font-size: 15px; color: var(--primary); font-weight: 700;">(15年經驗)</span></div>
+                            
+                            <div style="display: flex; flex-direction: column; gap: 20px; text-align: left;">
+                                <div style="display: flex; flex-direction: column; gap: 6px;">
+                                    <div style="font-size: 16px; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 8px;">
+                                        <span style="width: 6px; height: 6px; background-color: var(--primary); border-radius: 50%;"></span>
+                                        模具與機構件開發
+                                    </div>
+                                    <div style="font-size: 14px; color: var(--text-muted); line-height: 1.6; font-weight: 500; padding-left: 14px;">
+                                        精通塑膠件與精密結構件開發。精準評估空間配置、結構強度及大批量生產的可組裝性。
+                                    </div>
+                                </div>
+                                <div style="display: flex; flex-direction: column; gap: 6px;">
+                                    <div style="font-size: 16px; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 8px;">
+                                        <span style="width: 6px; height: 6px; background-color: var(--primary); border-radius: 50%;"></span>
+                                        工程開發工具
+                                    </div>
+                                    <div style="font-size: 14px; color: var(--text-muted); line-height: 1.6; font-weight: 500; padding-left: 14px;">
+                                        精通 Creo、SolidWorks、AutoCAD 等主流 3D 機構設計軟體，建立標準化開發模型。
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-
-                    <!-- Center Speaker Unit Image -->
-                    <img src="assets/images/image2.png" alt="Speaker Unit Graphic" class="pic" style="left: 605px; top: 440px; width: 70px; height: 140px; object-fit: contain; z-index: 5;">
-
-                    <!-- Bottom Right Card: Acoustic Development -->
-                    <div class="competency-card" style="left: 715px; top: 395px; width: 410px; height: 235px; background: rgba(2, 132, 199, 0.02); border: 1px solid rgba(2, 132, 199, 0.1); border-radius: 8px; padding: 20px;">
-                        <div class="comp-title" style="font-size: 22px; font-weight: 800; color: var(--primary); margin-bottom: 12px; border-bottom: 2px dashed rgba(2, 132, 199, 0.15); padding-bottom: 8px; display: flex; align-items: center; gap: 8px;">
-                            <i data-lucide="volume-2" style="width: 22px; height: 22px;"></i>
-                            <span>聲學與揚聲器開發 (10+年經驗)</span>
-                        </div>
-                        <div class="comp-item">
-                            <i data-lucide="arrow-right-circle" style="position: absolute; left: 0; top: 4px; width: 15px; height: 15px; color: var(--primary);"></i>
-                            專注 NB、AIO、Sound bar、Portable Speaker 聲學結構整合, 模擬分析
-                        </div>
-                        <div class="comp-item">
-                            <i data-lucide="arrow-right-circle" style="position: absolute; left: 0; top: 4px; width: 15px; height: 15px; color: var(--primary);"></i>
-                            微型揚聲器特性開發規劃
-                        </div>
-                        <div class="comp-item">
-                            <i data-lucide="arrow-right-circle" style="position: absolute; left: 0; top: 4px; width: 15px; height: 15px; color: var(--primary);"></i>
-                            熟悉 KLIPPEL 與 Sound Check 數據分析
+ 
+                    <!-- Right Card: Acoustic Development -->
+                    <div class="competency-card fade-up-item delay-3" style="left: 850px; top: 150px; width: 350px; height: 490px; padding: 30px; display: flex; flex-direction: column; justify-content: flex-start; border: 1px solid var(--border-color) !important; background: #ffffff !important;">
+                        <div>
+                            <div class="minimal-icon-badge" style="color: var(--primary);"><i data-lucide="volume-2"></i></div>
+                            <div style="font-size: 22px; font-weight: 800; color: var(--text-main); margin-bottom: 25px; line-height: 1.3;">聲學與揚聲器開發<br><span style="font-size: 15px; color: var(--primary); font-weight: 700;">(10+年經驗)</span></div>
+                            
+                            <div style="display: flex; flex-direction: column; gap: 20px; text-align: left;">
+                                <div style="display: flex; flex-direction: column; gap: 6px;">
+                                    <div style="font-size: 16px; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 8px;">
+                                        <span style="width: 6px; height: 6px; background-color: var(--primary); border-radius: 50%;"></span>
+                                        聲學系統整合
+                                    </div>
+                                    <div style="font-size: 14px; color: var(--text-muted); line-height: 1.6; font-weight: 500; padding-left: 14px;">
+                                        專注 NB、AIO、Soundbar 及可攜式音響開發，精確進行 COMSOL 聲學結構與聲場模擬。
+                                    </div>
+                                </div>
+                                <div style="display: flex; flex-direction: column; gap: 6px;">
+                                    <div style="font-size: 16px; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 8px;">
+                                        <span style="width: 6px; height: 6px; background-color: var(--primary); border-radius: 50%;"></span>
+                                        單體特性開發
+                                    </div>
+                                    <div style="font-size: 14px; color: var(--text-muted); line-height: 1.6; font-weight: 500; padding-left: 14px;">
+                                        微型揚聲器規格客製與特性開發。熟練操作 KLIPPEL 與 SoundCheck 進行精密數據分析。
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -204,106 +306,122 @@
             
             <!-- SLIDE 4 -->
             <section class="slide" data-slide-index="4">
-                <div class="slide-stage">
-                    <div class="slide-title-standard">Core Values</div>
-
-
-                    <!-- Card 1: 系統性問題解決 -->
-                    <div class="value-card" style="left: 100px; top: 125px; width: 510px; height: 240px; position: absolute; padding: 20px;">
-                        <div class="value-card-header" style="display: flex; align-items: center; margin-bottom: 15px;">
-                            <img src="assets/images/image3.png" alt="Systematic Icon" class="value-card-icon" style="width: 55px; height: 55px; object-fit: contain;">
-                            <div class="value-card-title" style="font-size: 24px; font-weight: 800; color: #0f172a; margin-left: 15px;">系統性問題解決</div>
+                <div class="slide-stage" style="background: #ffffff;">
+                    <div class="slide-title-standard fade-up-item">Core Values</div>
+ 
+                    <!-- Bento Card 1: 系統性問題解決 -->
+                    <div class="value-card fade-up-item delay-1" style="left: 80px; top: 150px; width: 545px; height: 230px; padding: 25px 30px; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid var(--border-color) !important; background: #ffffff !important;">
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <div class="minimal-icon-badge" style="margin-bottom: 0; color: var(--primary); width: 40px; height: 40px;"><i data-lucide="layout-grid" style="width: 30px !important; height: 30px !important;"></i></div>
+                            <div class="value-card-title" style="font-size: 26px; font-weight: 800; color: var(--text-main);">系統性問題解決</div>
                         </div>
-                        <div class="value-card-desc" style="font-size: 16px; color: #334155; line-height: 1.6; font-weight: 500; padding-right: 120px;">
+                        <div class="value-card-desc" style="font-size: 17px; color: var(--text-muted); line-height: 1.5; font-weight: 500;">
                             同時評估空間、聲學、結構、材料、製程與成本。找出產品整體最佳解，非局部最佳解。
                         </div>
-                        <img src="assets/images/image4.png" alt="Systematic Graph" class="value-card-graph" style="position: absolute; bottom: 15px; right: 15px; width: 120px; height: 85px; object-fit: contain;">
-                    </div>
-
-                    <!-- Card 2: 模擬支援決策 -->
-                    <div class="value-card" style="left: 670px; top: 125px; width: 510px; height: 240px; position: absolute; padding: 20px;">
-                        <div class="value-card-header" style="display: flex; align-items: center; margin-bottom: 15px;">
-                            <img src="assets/images/image6.png" alt="Simulation Icon" class="value-card-icon" style="width: 55px; height: 55px; object-fit: contain;">
-                            <div class="value-card-title" style="font-size: 24px; font-weight: 800; color: #0f172a; margin-left: 15px;">模擬支援決策</div>
+                        <div style="display: flex; gap: 15px; font-size: 14px; font-weight: 700; color: var(--primary); padding-left: 55px; margin-top: 5px;">
+                            <span>▪ 跨領域整合規劃，降低單點優化衝突</span>
+                            <span>▪ 多學科力學與聲學綜合考量</span>
                         </div>
-                        <div class="value-card-desc" style="font-size: 16px; color: #334155; line-height: 1.6; font-weight: 500; padding-right: 140px;">
+                    </div>
+ 
+                    <!-- Bento Card 2: 模擬支援決策 -->
+                    <div class="value-card fade-up-item delay-2" style="left: 655px; top: 150px; width: 545px; height: 230px; padding: 25px 30px; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid var(--border-color) !important; background: #ffffff !important;">
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <div class="minimal-icon-badge" style="margin-bottom: 0; color: var(--primary); width: 40px; height: 40px;"><i data-lucide="line-chart" style="width: 30px !important; height: 30px !important;"></i></div>
+                            <div class="value-card-title" style="font-size: 26px; font-weight: 800; color: var(--text-main);">模擬支援決策</div>
+                        </div>
+                        <div class="value-card-desc" style="font-size: 17px; color: var(--text-muted); line-height: 1.5; font-weight: 500;">
                             在設計初期用模擬降低試錯成本。提早發現聲學與結構風險，確保設計方向。
                         </div>
-                        <img src="assets/images/image5.png" alt="Simulation Graph" class="value-card-graph" style="position: absolute; bottom: 15px; right: 15px; width: 135px; height: 100px; object-fit: contain;">
-                    </div>
-
-                    <!-- Card 3: 量產導向設計 -->
-                    <div class="value-card" style="left: 100px; top: 395px; width: 510px; height: 240px; position: absolute; padding: 20px;">
-                        <div class="value-card-header" style="display: flex; align-items: center; margin-bottom: 15px;">
-                            <img src="assets/images/image7.png" alt="Production Icon" class="value-card-icon" style="width: 55px; height: 55px; object-fit: contain;">
-                            <div class="value-card-title" style="font-size: 24px; font-weight: 800; color: #0f172a; margin-left: 15px;">量產導向設計</div>
+                        <div style="display: flex; gap: 15px; font-size: 14px; font-weight: 700; color: var(--primary); padding-left: 55px; margin-top: 5px;">
+                            <span>▪ COMSOL 多物理量耦合，提早驗證設計</span>
+                            <span>▪ 減少 50% 實體樣品重複打樣成本</span>
                         </div>
-                        <div class="value-card-desc" style="font-size: 16px; color: #334155; line-height: 1.6; font-weight: 500; padding-right: 140px;">
+                    </div>
+ 
+                    <!-- Bento Card 3: 量產導向設計 -->
+                    <div class="value-card fade-up-item delay-3" style="left: 80px; top: 410px; width: 545px; height: 230px; padding: 25px 30px; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid var(--border-color) !important; background: #ffffff !important;">
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <div class="minimal-icon-badge" style="margin-bottom: 0; color: var(--primary); width: 40px; height: 40px;"><i data-lucide="factory" style="width: 30px !important; height: 30px !important;"></i></div>
+                            <div class="value-card-title" style="font-size: 26px; font-weight: 800; color: var(--text-main);">量產導向設計</div>
+                        </div>
+                        <div class="value-card-desc" style="font-size: 17px; color: var(--text-muted); line-height: 1.5; font-weight: 500;">
                             同步考慮製程、組裝、良率與一致性。避免停留開發階段，確保工廠穩定執行。
                         </div>
-                        <img src="assets/images/image5.png" alt="Production Graph" class="value-card-graph" style="position: absolute; bottom: 15px; right: 15px; width: 135px; height: 100px; object-fit: contain;">
-                    </div>
-
-                    <!-- Card 4: 經驗工具化 -->
-                    <div class="value-card" style="left: 670px; top: 395px; width: 510px; height: 240px; position: absolute; padding: 20px;">
-                        <div class="value-card-header" style="display: flex; align-items: center; margin-bottom: 15px;">
-                            <img src="assets/images/image8.png" alt="Toolization Icon" class="value-card-icon" style="width: 55px; height: 55px; object-fit: contain;">
-                            <div class="value-card-title" style="font-size: 24px; font-weight: 800; color: #0f172a; margin-left: 15px;">經驗工具化</div>
+                        <div style="display: flex; gap: 15px; font-size: 14px; font-weight: 700; color: var(--primary); padding-left: 55px; margin-top: 5px;">
+                            <span>▪ 治具公差與生產一致性評估</span>
+                            <span>▪ DFM（可製造性設計）深度審核</span>
                         </div>
-                        <div class="value-card-desc" style="font-size: 16px; color: #334155; line-height: 1.6; font-weight: 500; padding-right: 140px;">
+                    </div>
+ 
+                    <!-- Bento Card 4: 經驗工具化 -->
+                    <div class="value-card fade-up-item delay-4" style="left: 655px; top: 410px; width: 545px; height: 230px; padding: 25px 30px; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid var(--border-color) !important; background: #ffffff !important;">
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <div class="minimal-icon-badge" style="margin-bottom: 0; color: var(--primary); width: 40px; height: 40px;"><i data-lucide="wrench" style="width: 30px !important; height: 30px !important;"></i></div>
+                            <div class="value-card-title" style="font-size: 26px; font-weight: 800; color: var(--text-main);">經驗工具化</div>
+                        </div>
+                        <div class="value-card-desc" style="font-size: 17px; color: var(--text-muted); line-height: 1.5; font-weight: 500;">
                             將 Excel 與工程邏輯轉換為自動化工具。降低風險，提升跨部門執行效率。
                         </div>
-                        <img src="assets/images/image5.png" alt="Toolization Graph" class="value-card-graph" style="position: absolute; bottom: 15px; right: 15px; width: 135px; height: 100px; object-fit: contain;">
+                        <div style="display: flex; gap: 15px; font-size: 14px; font-weight: 700; color: var(--primary); padding-left: 55px; margin-top: 5px;">
+                            <span>▪ 自動化特徵提取與電磁規格計算</span>
+                            <span>▪ 建立標準數據通道，消除人為溝通誤判</span>
+                        </div>
                     </div>
                 </div>
             </section>
             
             <!-- SLIDE 5 -->
             <section class="slide" data-slide-index="5">
-                <div class="slide-stage">
-                    <div class="slide-title-standard">Finite Element Analysis</div>
-
+                <div class="slide-stage" style="background: #ffffff;">
+                    <div class="slide-title-standard fade-up-item">Finite Element Analysis</div>
                     
-                    <!-- Left FEA Plot -->
-                    <div class="fea-plot-container" style="position: absolute; left: 50px; top: 168px; width: 360px; height: 250px; border: 1px solid rgba(2, 132, 199, 0.15); border-radius: 8px; overflow: hidden; background: #ffffff; z-index: 5;">
-                        <img src="assets/images/image11.png" alt="Displacement Simulation" style="width: 100%; height: 100%; object-fit: cover;">
-                        <div class="fea-scan-line" style="position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.85), transparent); box-shadow: 0 0 12px rgba(6, 182, 212, 0.9); animation: laser-scan 4s linear infinite;"></div>
+                    <!-- Left FEA Plot Card (Reframed original simulation image) -->
+                    <div class="fea-feature-box fade-up-item delay-1" style="left: 80px; top: 150px; width: 350px; height: 430px; padding: 20px; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid var(--border-color) !important; background: #ffffff !important;">
+                        <div class="img-hover-zoom" style="width: 100%; height: 210px; border-radius: 12px; overflow: hidden; background: #ffffff; border: 1px solid var(--border-color);">
+                            <img src="assets/images/image11.png" alt="Displacement Simulation" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div style="margin-top: 15px; text-align: center;">
+                            <div class="fea-feature-title" style="font-size: 20px; font-weight: 800; color: var(--text-main); margin-bottom: 8px; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                                <i data-lucide="box" style="width: 32px !important; height: 32px !important; color: var(--primary);"></i>
+                                結構位移預測
+                            </div>
+                            <div class="fea-feature-desc" style="font-size: 13.5px; color: var(--text-muted); line-height: 1.5; font-weight: 500;">提早分析揚聲器震動模態，避免機構共振與異音干擾。</div>
+                        </div>
                     </div>
                     
-                    <!-- Center FEA Plot -->
-                    <div class="fea-plot-container" style="position: absolute; left: 460px; top: 168px; width: 360px; height: 250px; border: 1px solid rgba(2, 132, 199, 0.15); border-radius: 8px; overflow: hidden; background: #ffffff; z-index: 5;">
-                        <img src="assets/images/image9.png" alt="Magnetic Field Simulation" style="width: 100%; height: 100%; object-fit: cover;">
-                        <span style="position: absolute; left: 10px; top: 5px; font-size: 11px; font-weight: bold; color: #475569;">mm</span>
-                        <div class="fea-scan-line" style="position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.85), transparent); box-shadow: 0 0 12px rgba(6, 182, 212, 0.9); animation: laser-scan 4s linear infinite; animation-delay: 1.3s;"></div>
+                    <!-- Center FEA Plot Card (Reframed original simulation image) -->
+                    <div class="fea-feature-box fade-up-item delay-2" style="left: 465px; top: 150px; width: 350px; height: 430px; padding: 20px; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid var(--border-color) !important; background: #ffffff !important;">
+                        <div class="img-hover-zoom" style="width: 100%; height: 210px; border-radius: 12px; overflow: hidden; background: #ffffff; position: relative; border: 1px solid var(--border-color);">
+                            <img src="assets/images/image9.png" alt="Magnetic Field Simulation" style="width: 100%; height: 100%; object-fit: cover;">
+                            <span style="position: absolute; left: 10px; top: 5px; font-size: 10px; font-weight: 700; color: var(--text-muted); background: rgba(255,255,255,0.8); padding: 2px 6px; border-radius: 4px;">mm</span>
+                        </div>
+                        <div style="margin-top: 15px; text-align: center;">
+                            <div class="fea-feature-title" style="font-size: 20px; font-weight: 800; color: var(--text-main); margin-bottom: 8px; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                                <i data-lucide="magnet" style="width: 32px !important; height: 32px !important; color: var(--primary);"></i>
+                                磁場效能優化
+                            </div>
+                            <div class="fea-feature-desc" style="font-size: 13.5px; color: var(--text-muted); line-height: 1.5; font-weight: 500;">模擬微型揚聲器磁路，確保在極限空間內達到最佳電磁驅動力。</div>
+                        </div>
                     </div>
-
-                    <!-- Right FEA Plot -->
-                    <div class="fea-plot-container" style="position: absolute; left: 870px; top: 168px; width: 360px; height: 250px; border: 1px solid rgba(2, 132, 199, 0.15); border-radius: 8px; overflow: hidden; background: #ffffff; z-index: 5;">
-                        <img src="assets/images/image12.png" alt="Acoustic Field Simulation" style="width: 100%; height: 100%; object-fit: cover;">
-                        <span style="position: absolute; right: 10px; bottom: 5px; font-size: 11px; font-weight: bold; color: #475569;">mm</span>
-                        <div class="fea-scan-line" style="position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.85), transparent); box-shadow: 0 0 12px rgba(6, 182, 212, 0.9); animation: laser-scan 4s linear infinite; animation-delay: 2.6s;"></div>
+ 
+                    <!-- Right FEA Plot Card (Reframed original simulation image) -->
+                    <div class="fea-feature-box fade-up-item delay-3" style="left: 850px; top: 150px; width: 350px; height: 430px; padding: 20px; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid var(--border-color) !important; background: #ffffff !important;">
+                        <div class="img-hover-zoom" style="width: 100%; height: 210px; border-radius: 12px; overflow: hidden; background: #ffffff; position: relative; border: 1px solid var(--border-color);">
+                            <img src="assets/images/image12.png" alt="Acoustic Field Simulation" style="width: 100%; height: 100%; object-fit: cover;">
+                            <span style="position: absolute; right: 10px; bottom: 5px; font-size: 10px; font-weight: 700; color: var(--text-muted); background: rgba(255,255,255,0.8); padding: 2px 6px; border-radius: 4px;">mm</span>
+                        </div>
+                        <div style="margin-top: 15px; text-align: center;">
+                            <div class="fea-feature-title" style="font-size: 20px; font-weight: 800; color: var(--text-main); margin-bottom: 8px; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                                <i data-lucide="volume-2" style="width: 32px !important; height: 32px !important; color: var(--primary);"></i>
+                                系統聲場分析
+                            </div>
+                            <div class="fea-feature-desc" style="font-size: 13.5px; color: var(--text-muted); line-height: 1.5; font-weight: 500;">預測出音路徑與聲學特性，確保系統性能達到目標總聲壓級(SPL)。</div>
+                        </div>
                     </div>
-
-                    <!-- Card 1 (結構位移預測) -->
-                    <div class="fea-feature-box" style="left: 50px; top: 445px; width: 360px; height: 170px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; z-index: 10;">
-                        <div class="fea-feature-title" style="font-size: 22px; font-weight: 800; color: var(--primary); margin-bottom: 12px; border-bottom: 2px solid var(--primary); padding-bottom: 4px; display: inline-block;">結構位移預測</div>
-                        <div class="fea-feature-desc" style="font-size: 15px; color: #475569; line-height: 1.6; font-weight: 500;">提早 analysis 揚聲器震動模態，避免機構共振與異音干擾。</div>
-                    </div>
-
-                    <!-- Card 2 (磁場效能優化) -->
-                    <div class="fea-feature-box" style="left: 460px; top: 445px; width: 360px; height: 170px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; z-index: 10;">
-                        <div class="fea-feature-title" style="font-size: 22px; font-weight: 800; color: var(--primary); margin-bottom: 12px; border-bottom: 2px solid var(--primary); padding-bottom: 4px; display: inline-block;">磁場效能優化</div>
-                        <div class="fea-feature-desc" style="font-size: 15px; color: #475569; line-height: 1.6; font-weight: 500;">模擬微型揚聲器磁路，確保在極限空間內達到最佳電磁驅動力。</div>
-                    </div>
-
-                    <!-- Card 3 (系統聲場分析) -->
-                    <div class="fea-feature-box" style="left: 870px; top: 445px; width: 360px; height: 170px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; z-index: 10;">
-                        <div class="fea-feature-title" style="font-size: 22px; font-weight: 800; color: var(--primary); margin-bottom: 12px; border-bottom: 2px solid var(--primary); padding-bottom: 4px; display: inline-block;">系統聲場分析</div>
-                        <div class="fea-feature-desc" style="font-size: 15px; color: #475569; line-height: 1.6; font-weight: 500;">預測出音路徑與聲學特性，確保系統性能達到目標總聲壓級(SPL)。</div>
-                    </div>
-
+ 
                     <!-- Bottom Summary Banner -->
-                    <div class="slide5-summary-card" style="left: 129px; top: 640px; width: 1022px; height: 48px; font-size: 16px; font-weight: 700; color: #475569; text-align: center; display: flex; align-items: center; justify-content: center; z-index: 10; background: transparent;">
+                    <div class="fade-up-item delay-4" style="position: absolute; left: 80px; top: 595px; width: 1120px; height: 50px; font-size: 16px; font-weight: 700; color: var(--text-main); display: flex; align-items: center; justify-content: center; border-radius: 15px; border: 1px solid var(--border-color); background: #ffffff;">
                         使用 COMSOL 進行微型揚聲器與系統聲學模擬，在早期設計階段支援決策，減少後期設計修改與重複打樣。
                     </div>
                 </div>
@@ -311,52 +429,71 @@
             
             <!-- SLIDE 6 -->
             <section class="slide" data-slide-index="6">
-                <div class="slide-stage">
-                    <div class="slide-title-standard">Project Experience</div>
-
-
-                    <!-- Left Column: Case A - Soundbar -->
-                    <div class="project-card-v2" style="left: 60px; top: 110px; width: 550px; height: 560px; position: absolute; display: flex; flex-direction: column; padding: 20px;">
-                        <div class="project-case-title" style="font-size: 26px; font-weight: 800; color: var(--primary); border-bottom: 2px solid rgba(2, 132, 199, 0.15); padding-bottom: 8px; margin-bottom: 12px; width: 100%;">Case A: Soundbar</div>
-                        <div class="project-img-wrapper" style="height: 240px; display: flex; align-items: center; justify-content: center; width: 100%; margin-bottom: 15px; background-color: rgba(2, 132, 199, 0.01); border-radius: 8px; border: 1px dashed rgba(2, 132, 199, 0.06); overflow: hidden; position: relative;">
-                            <img src="assets/images/image13.png" alt="Soundbar Product" style="max-height: 220px; max-width: 100%; object-fit: contain; z-index: 5;">
+                <div class="slide-stage" style="background: #ffffff;">
+                    <div class="slide-title-standard fade-up-item">Project Experience</div>
+ 
+                    <!-- Left Column: Case A - Soundbar (Reframed original soundbar image) -->
+                    <div class="project-card-v2 fade-up-item delay-1" style="left: 80px; top: 140px; width: 540px; height: 500px; padding: 30px; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid var(--border-color) !important; background: #ffffff !important;">
+                        <div class="project-case-title" style="font-size: 26px; font-weight: 800; color: var(--text-main); border-bottom: 1px solid var(--border-color); padding-bottom: 10px; width: 100%;">Case A: Soundbar</div>
+                        <div class="project-img-wrapper img-hover-zoom" style="height: 200px; display: flex; align-items: center; justify-content: center; width: 100%; margin: 15px 0; background-color: #ffffff; border-radius: 12px; overflow: hidden; position: relative; border: 1px solid var(--border-color);">
+                            <img src="assets/images/image13.png" alt="Soundbar Product" style="max-height: 180px; max-width: 95%; object-fit: contain; z-index: 5;">
                         </div>
-                        <div class="project-info-grid" style="display: flex; flex-direction: column; gap: 12px; text-align: left;">
-                            <div style="font-size: 17px; font-weight: 800; color: #475569; margin-bottom: 4px; text-transform: uppercase; border-left: 3px solid var(--primary); padding-left: 8px;">專案挑戰與角色</div>
-                            <div class="info-block" style="display: flex; flex-direction: row; gap: 10px; align-items: flex-start;">
-                                <div class="info-label label-constraints" style="width: 100px; flex-shrink: 0; font-size: 15px; font-weight: 800; color: #d97706;">設計限制：</div>
-                                <div class="info-text" style="font-size: 16px; font-weight: 600; color: var(--text-dark); line-height: 1.4;">有限的空間無法達成滿足客戶低頻設計</div>
+                        <div class="project-info-grid" style="display: flex; flex-direction: column; gap: 12px; text-align: left; width: 100%;">
+                            <div class="info-block" style="margin-bottom: 4px;">
+                                <div class="info-label-badge" style="width: 110px; color: #b91c1c;">
+                                    <i data-lucide="alert-circle" style="width: 18px; height: 18px; color: #b91c1c;"></i>
+                                    <span>設計限制</span>
+                                </div>
+                                <div class="info-text" style="font-size: 16px; font-weight: 600; color: #b91c1c;">有限的空間無法達成滿足客戶低頻設計</div>
                             </div>
-                            <div class="info-block" style="display: flex; flex-direction: row; gap: 10px; align-items: flex-start;">
-                                <div class="info-label label-role" style="width: 100px; flex-shrink: 0; font-size: 15px; font-weight: 800; color: var(--primary);">My Role：</div>
-                                <div class="info-text" style="font-size: 16px; font-weight: 600; color: var(--text-dark); line-height: 1.4;">前期系統規劃 , 整合聲學方案規劃及結構設計</div>
+                            
+                            <div class="info-block" style="margin-bottom: 4px;">
+                                <div class="info-label-badge" style="width: 110px; color: #4338ca;">
+                                    <i data-lucide="user" style="width: 18px; height: 18px; color: #4338ca;"></i>
+                                    <span>My Role</span>
+                                </div>
+                                <div class="info-text" style="font-size: 16px; font-weight: 600; color: var(--text-main);">前期系統規劃 , 整合聲學方案規劃及結構設計</div>
                             </div>
-                            <div class="info-block" style="display: flex; flex-direction: row; gap: 10px; align-items: flex-start;">
-                                <div class="info-label label-key" style="width: 100px; flex-shrink: 0; font-size: 15px; font-weight: 800; color: var(--secondary);">設計關鍵：</div>
-                                <div class="info-text" style="font-size: 16px; font-weight: 600; color: var(--text-dark); line-height: 1.4;">在受限的空間下 , 體積與特性的平衡</div>
+                            
+                            <div class="info-block">
+                                <div class="info-label-badge" style="width: 110px; color: #15803d;">
+                                    <i data-lucide="key" style="width: 18px; height: 18px; color: #15803d;"></i>
+                                    <span>設計關鍵</span>
+                                </div>
+                                <div class="info-text" style="font-size: 16px; font-weight: 600; color: #15803d;">在受限的空間下 , 體積與特性的平衡</div>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- Right Column: Case B - Conference speaker -->
-                    <div class="project-card-v2" style="left: 670px; top: 110px; width: 550px; height: 560px; position: absolute; display: flex; flex-direction: column; padding: 20px;">
-                        <div class="project-case-title" style="font-size: 26px; font-weight: 800; color: var(--primary); border-bottom: 2px solid rgba(2, 132, 199, 0.15); padding-bottom: 8px; margin-bottom: 12px; width: 100%;">Case B: Conference speaker</div>
-                        <div class="project-img-wrapper" style="height: 240px; display: flex; align-items: center; justify-content: center; width: 100%; margin-bottom: 15px; background-color: rgba(2, 132, 199, 0.01); border-radius: 8px; border: 1px dashed rgba(2, 132, 199, 0.06); overflow: hidden; position: relative;">
-                            <img src="assets/images/image14.png" alt="Conference Speaker Product" style="max-height: 220px; max-width: 100%; object-fit: contain; z-index: 5;">
+                    <!-- Right Column: Case B - Conference speaker (Reframed original conference speaker image) -->
+                    <div class="project-card-v2 fade-up-item delay-2" style="left: 660px; top: 140px; width: 540px; height: 500px; padding: 30px; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid var(--border-color) !important; background: #ffffff !important;">
+                        <div class="project-case-title" style="font-size: 26px; font-weight: 800; color: var(--text-main); border-bottom: 1px solid var(--border-color); padding-bottom: 10px; width: 100%;">Case B: Conference speaker</div>
+                        <div class="project-img-wrapper img-hover-zoom" style="height: 200px; display: flex; align-items: center; justify-content: center; width: 100%; margin: 15px 0; background-color: #ffffff; border-radius: 12px; overflow: hidden; position: relative; border: 1px solid var(--border-color);">
+                            <img src="assets/images/image14.png" alt="Conference Speaker Product" style="max-height: 180px; max-width: 95%; object-fit: contain; z-index: 5;">
                         </div>
-                        <div class="project-info-grid" style="display: flex; flex-direction: column; gap: 12px; text-align: left;">
-                            <div style="font-size: 17px; font-weight: 800; color: #475569; margin-bottom: 4px; text-transform: uppercase; border-left: 3px solid var(--primary); padding-left: 8px;">專案挑戰與角色</div>
-                            <div class="info-block" style="display: flex; flex-direction: row; gap: 10px; align-items: flex-start;">
-                                <div class="info-label label-constraints" style="width: 100px; flex-shrink: 0; font-size: 15px; font-weight: 800; color: #d97706;">設計限制：</div>
-                                <div class="info-text" style="font-size: 16px; font-weight: 600; color: var(--text-dark); line-height: 1.4;">高集成度功能與微型化 空間整合挑戰</div>
+                        <div class="project-info-grid" style="display: flex; flex-direction: column; gap: 12px; text-align: left; width: 100%;">
+                            <div class="info-block" style="margin-bottom: 4px;">
+                                <div class="info-label-badge" style="width: 110px; color: #b91c1c;">
+                                    <i data-lucide="alert-circle" style="width: 18px; height: 18px; color: #b91c1c;"></i>
+                                    <span>設計限制</span>
+                                </div>
+                                <div class="info-text" style="font-size: 16px; font-weight: 600; color: #b91c1c;">高集成度功能與微型化空間整合挑戰</div>
                             </div>
-                            <div class="info-block" style="display: flex; flex-direction: row; gap: 10px; align-items: flex-start;">
-                                <div class="info-label label-role" style="width: 100px; flex-shrink: 0; font-size: 15px; font-weight: 800; color: var(--primary);">My Role：</div>
-                                <div class="info-text" style="font-size: 16px; font-weight: 600; color: var(--text-dark); line-height: 1.4;">從機構佈局、聲學模擬到單體開發的垂直整合</div>
+                            
+                            <div class="info-block" style="margin-bottom: 4px;">
+                                <div class="info-label-badge" style="width: 110px; color: #4338ca;">
+                                    <i data-lucide="user" style="width: 18px; height: 18px; color: #4338ca;"></i>
+                                    <span>My Role</span>
+                                </div>
+                                <div class="info-text" style="font-size: 16px; font-weight: 600; color: var(--text-main);">從機構佈局、聲學模擬到單體開發的垂直整合</div>
                             </div>
-                            <div class="info-block" style="display: flex; flex-direction: row; gap: 10px; align-items: flex-start;">
-                                <div class="info-label label-key" style="width: 100px; flex-shrink: 0; font-size: 15px; font-weight: 800; color: var(--secondary);">設計關鍵：</div>
-                                <div class="info-text" style="font-size: 16px; font-weight: 600; color: var(--text-dark); line-height: 1.4;">結合多功能與空間內的音箱優化與聲學平衡</div>
+                            
+                            <div class="info-block">
+                                <div class="info-label-badge" style="width: 110px; color: #15803d;">
+                                    <i data-lucide="key" style="width: 18px; height: 18px; color: #15803d;"></i>
+                                    <span>設計關鍵</span>
+                                </div>
+                                <div class="info-text" style="font-size: 16px; font-weight: 600; color: #15803d;">結合多功能與空間內的音箱優化與聲學平衡</div>
                             </div>
                         </div>
                     </div>
@@ -366,129 +503,194 @@
             <!-- SLIDE 7 -->
             <section class="slide" data-slide-index="7">
                 <div class="slide-stage" style="background: #ffffff;">
-                    <!-- Header Logo Image (Placed on top right for layout balance) -->
-                    <img src="assets/images/image16.png" alt="Header Logo" style="position: absolute; left: 1020px; top: 40px; width: 180px; height: 41px; object-fit: contain; z-index: 2;">
-                    
-                    <div class="slide-title-standard">Upgrading to AI</div>
-
-                    <!-- High-tech Flow Connectors (Redesigned SVG Traveling Dash Arrows) -->
-                    <div class="tech-flow-connector" style="left: 412px; top: 370px;">
-                        <svg width="50" height="20" viewBox="0 0 50 20" fill="none" class="tech-arrow-svg" xmlns="http://www.w3.org/2000/svg">
-                            <!-- Background Track -->
-                            <path d="M2 10H42" stroke="rgba(124, 58, 237, 0.12)" stroke-width="3.5" stroke-linecap="round"/>
-                            <!-- Traveling Dash Path -->
-                            <path d="M2 10H42" stroke="url(#arrow-grad)" stroke-width="3.5" stroke-linecap="round" class="arrow-line-path"/>
-                            <!-- Glowing Arrowhead -->
-                            <path d="M36 4L44 10L36 16" stroke="#7c3aed" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" class="arrow-head-path"/>
-                            <defs>
-                                <linearGradient id="arrow-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-                                    <stop offset="0%" stop-color="#0284c7" />
-                                    <stop offset="100%" stop-color="#7c3aed" />
-                                </linearGradient>
-                            </defs>
-                        </svg>
-                    </div>
-                    <div class="tech-flow-connector" style="left: 817px; top: 370px;">
-                        <svg width="50" height="20" viewBox="0 0 50 20" fill="none" class="tech-arrow-svg" xmlns="http://www.w3.org/2000/svg">
-                            <!-- Background Track -->
-                            <path d="M2 10H42" stroke="rgba(124, 58, 237, 0.12)" stroke-width="3.5" stroke-linecap="round"/>
-                            <!-- Traveling Dash Path -->
-                            <path d="M2 10H42" stroke="url(#arrow-grad)" stroke-width="3.5" stroke-linecap="round" class="arrow-line-path"/>
-                            <!-- Glowing Arrowhead -->
-                            <path d="M36 4L44 10L36 16" stroke="#7c3aed" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" class="arrow-head-path"/>
-                        </svg>
-                    </div>
+                    <div class="slide-title-standard fade-up-item">Upgrading to AI</div>
                     
                     <!-- Column 1: Traditional Excel -->
-                    <div class="flow-card" style="position: absolute; left: 60px; top: 170px; width: 350px; height: 420px; background: rgba(2, 132, 199, 0.03) !important; border: 1px solid rgba(2, 132, 199, 0.15) !important; border-radius: 12px; padding: 25px 20px; display: flex; flex-direction: column; align-items: center; text-align: center;">
-                        <div style="font-size: 11px; font-weight: 800; color: var(--primary); background: rgba(2, 132, 199, 0.06); padding: 4px 14px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.08em; border: 1px solid rgba(2, 132, 199, 0.15); margin-bottom: 10px; display: inline-flex; align-items: center; gap: 4px; pointer-events: none;">
-                            <span>Background</span>
+                    <div class="flow-card fade-up-item delay-1" style="position: absolute; left: 80px; top: 160px; width: 350px; height: 440px; padding: 25px 20px; display: flex; flex-direction: column; align-items: center; justify-content: space-between; text-align: center; border: 1px solid var(--border-color) !important; background: #ffffff !important;">
+                        <div class="minimal-icon-badge" style="color: #b91c1c; margin-bottom: 5px;"><i data-lucide="file-spreadsheet"></i></div>
+                        <div style="font-size: 11px; font-weight: 800; color: #b91c1c; background: rgba(185, 28, 28, 0.05); padding: 4px 14px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.08em; border: 1px solid rgba(185, 28, 28, 0.15); margin-bottom: 5px;">
+                            <span>⚠️ Excel 傳統流程</span>
                         </div>
-                        <div class="flow-hdr" style="font-size: 25px; font-weight: 800; color: var(--primary) !important; margin-bottom: 20px; text-align: center;">傳統 Excel 經驗邏輯</div>
+                        <div class="flow-hdr" style="font-size: 22px; font-weight: 800; color: var(--text-main); margin-bottom: 10px;">傳統 Excel 經驗邏輯</div>
                         
-                        <div class="flow-bullets-center" style="display: flex; flex-direction: column; gap: 11px; align-items: center; justify-content: center; width: 100%; text-align: center; margin: 0 0 16px 0;">
-                            <div style="font-size: 19px; color: #334155; line-height: 1.4; font-weight: 600; background: rgba(2, 132, 199, 0.05); border: 1px solid rgba(2, 132, 199, 0.12); border-radius: 6px; padding: 8px 16px; width: 95%; box-shadow: inset 0 1px 2px rgba(2,132,199,0.01);">依賴個人經驗與試算表</div>
-                            <div style="font-size: 19px; color: #334155; line-height: 1.4; font-weight: 600; background: rgba(2, 132, 199, 0.05); border: 1px solid rgba(2, 132, 199, 0.12); border-radius: 6px; padding: 8px 16px; width: 95%; box-shadow: inset 0 1px 2px rgba(2,132,199,0.01);">高工廠誤用風險</div>
-                            <div style="font-size: 19px; color: #334155; line-height: 1.4; font-weight: 600; background: rgba(2, 132, 199, 0.05); border: 1px solid rgba(2, 132, 199, 0.12); border-radius: 6px; padding: 8px 16px; width: 95%; box-shadow: inset 0 1px 2px rgba(2,132,199,0.01);">跨部門溝通落差大</div>
+                        <!-- Redesigned full-width centered list rows with WARNING icons -->
+                        <div class="flow-bullets-center" style="display: flex; flex-direction: column; justify-content: center; width: 100%; border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; background: #ffffff; margin-bottom: 15px; text-align: left;">
+                            <div style="font-size: 13.5px; color: #b91c1c; font-weight: 700; padding: 12px 14px; border-bottom: 1px solid var(--border-color); display: flex; align-items: center; gap: 8px;">
+                                <i data-lucide="x-circle" style="width: 16px !important; height: 16px !important; flex-shrink: 0;"></i>
+                                點對點孤島計算，跨部門數據不同步
+                            </div>
+                            <div style="font-size: 13.5px; color: #b91c1c; font-weight: 700; padding: 12px 14px; border-bottom: 1px solid var(--border-color); display: flex; align-items: center; gap: 8px;">
+                                <i data-lucide="x-circle" style="width: 16px !important; height: 16px !important; flex-shrink: 0;"></i>
+                                依賴個人經驗，公式難以標準化
+                            </div>
+                            <div style="font-size: 13.5px; color: #b91c1c; font-weight: 700; padding: 12px 14px; display: flex; align-items: center; gap: 8px;">
+                                <i data-lucide="x-circle" style="width: 16px !important; height: 16px !important; flex-shrink: 0;"></i>
+                                工廠參數誤用風險高，修改成本大
+                            </div>
                         </div>
                         
-                        <!-- Sleek Excel/Spreadsheet Graphic Mockup for perfect height/visual balance -->
-                        <div style="flex-grow: 1; display: flex; align-items: center; justify-content: center; width: 100%;">
-                            <div class="excel-graphic-mockup" style="width: 160px; height: 95px; border: 1.5px dashed rgba(2, 132, 199, 0.2); border-radius: 6px; padding: 6px; display: flex; flex-direction: column; gap: 4px; background: rgba(2, 132, 199, 0.01);">
-                                <div style="display: flex; gap: 4px; border-bottom: 1px solid rgba(2, 132, 199, 0.15); padding-bottom: 4px; align-items: center;">
-                                    <i data-lucide="file-spreadsheet" style="width: 14px; height: 14px; color: var(--primary);"></i>
-                                    <span style="font-size: 10px; font-weight: 700; color: #64748b; letter-spacing: 0.05em;">EXCEL_DATA.XLSX</span>
-                                </div>
-                                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; height: 100%;">
-                                    <div style="background: rgba(2, 132, 199, 0.08); border-radius: 2px;"></div>
-                                    <div style="background: rgba(2, 132, 199, 0.04); border-radius: 2px;"></div>
-                                    <div style="background: rgba(2, 132, 199, 0.04); border-radius: 2px;"></div>
-                                    <div style="background: rgba(2, 132, 199, 0.04); border-radius: 2px;"></div>
-                                    
-                                    <div style="background: rgba(2, 132, 199, 0.04); border-radius: 2px;"></div>
-                                    <div style="background: rgba(2, 132, 199, 0.08); border-radius: 2px;"></div>
-                                    <div style="background: rgba(2, 132, 199, 0.04); border-radius: 2px;"></div>
-                                    <div style="background: rgba(2, 132, 199, 0.04); border-radius: 2px;"></div>
- 
-                                    <div style="background: rgba(2, 132, 199, 0.04); border-radius: 2px;"></div>
-                                    <div style="background: rgba(2, 132, 199, 0.04); border-radius: 2px;"></div>
-                                    <div style="background: rgba(2, 132, 199, 0.08); border-radius: 2px;"></div>
-                                    <div style="background: rgba(2, 132, 199, 0.04); border-radius: 2px;"></div>
-                                </div>
+                        <!-- Excel Graphic Mockup (Red warning style) -->
+                        <div class="excel-graphic-mockup" style="width: 160px; height: 70px; border: 1px dashed rgba(185, 28, 28, 0.3); border-radius: 6px; padding: 6px; display: flex; flex-direction: column; gap: 4px; background: rgba(185, 28, 28, 0.01);">
+                            <div style="display: flex; gap: 4px; border-bottom: 1px solid rgba(185, 28, 28, 0.15); padding-bottom: 4px; align-items: center;">
+                                <i data-lucide="file-spreadsheet" style="width: 12px; height: 12px; color: #b91c1c;"></i>
+                                <span style="font-size: 9px; font-weight: 700; color: #b91c1c; letter-spacing: 0.05em;">EXCEL_DATA.XLSX</span>
+                            </div>
+                            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; height: 100%;">
+                                <div style="background: rgba(185, 28, 28, 0.15); border-radius: 2px;"></div>
+                                <div style="background: rgba(185, 28, 28, 0.05); border-radius: 2px;"></div>
+                                <div style="background: rgba(185, 28, 28, 0.05); border-radius: 2px;"></div>
+                                <div style="background: rgba(185, 28, 28, 0.05); border-radius: 2px;"></div>
+                                
+                                <div style="background: rgba(185, 28, 28, 0.05); border-radius: 2px;"></div>
+                                <div style="background: rgba(185, 28, 28, 0.15); border-radius: 2px;"></div>
+                                <div style="background: rgba(185, 28, 28, 0.05); border-radius: 2px;"></div>
+                                <div style="background: rgba(185, 28, 28, 0.05); border-radius: 2px;"></div>
                             </div>
                         </div>
                     </div>
  
-                    <!-- Column 2: AI Assist (Redesigned with light glowing violet card & core component) -->
-                    <div class="flow-card flow-card-violet" style="position: absolute; left: 465px; top: 170px; width: 350px; height: 420px; border-radius: 12px; padding: 25px 20px; display: flex; flex-direction: column; align-items: center; justify-content: space-between; overflow: hidden;">
-                        <!-- Top Chip -->
-                        <div style="font-size: 11px; font-weight: 800; color: #7c3aed; background: rgba(124, 58, 237, 0.08); padding: 4px 12px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.08em; border: 1px solid rgba(124, 58, 237, 0.2); box-shadow: 0 0 10px rgba(124, 58, 237, 0.1); display: inline-flex; align-items: center; gap: 4px;">
-                            <i data-lucide="sparkles" style="width: 10px; height: 10px;"></i>
+                    <!-- Column 2: AI Transition Channel with Sequential Chevron Flow -->
+                    <div class="flow-card flow-card-violet fade-up-item delay-2" style="position: absolute; left: 465px; top: 140px; width: 350px; height: 480px; border-radius: 20px; padding: 25px 20px; display: flex; flex-direction: column; align-items: center; justify-content: space-between; overflow: hidden; border: 1px solid var(--border-color) !important; background: #ffffff !important;">
+                        <!-- Top Sparkles badge -->
+                        <div class="minimal-icon-badge" style="color: var(--primary); margin-bottom: 5px;"><i data-lucide="sparkles"></i></div>
+                        <div style="font-size: 11px; font-weight: 800; color: var(--primary); background: rgba(79, 70, 229, 0.06); padding: 4px 12px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.08em; border: 1px solid rgba(79, 70, 229, 0.15); margin-bottom: 5px; display: inline-flex; align-items: center; gap: 4px;">
                             <span>AI Engine</span>
                         </div>
- 
-                        <!-- Center AI Hexagon Neural Core (Gyroscopic 3D Microchip) -->
-                        <div class="ai-hex-core-container" style="position: relative; width: 150px; height: 150px; display: flex; align-items: center; justify-content: center; margin: 10px 0;">
-                            <!-- Glowing outer hexagonal aura -->
-                            <div class="ai-hex-glow"></div>
-                            <!-- Outer rotating tech hexagon border -->
-                            <div class="ai-hex-outer-ring"></div>
-                            <!-- Rotating data rings (3D gyro effect) -->
-                            <div class="ai-gyro-ring ring-x"></div>
-                            <div class="ai-gyro-ring ring-y"></div>
-                            <div class="ai-gyro-ring ring-z"></div>
-                            <!-- Center Neural Core -->
-                            <div class="ai-hex-center">
-                                <i data-lucide="cpu" style="width: 32px; height: 32px; color: #ffffff;"></i>
+
+                        <!-- AI Tech Style Cosmic Orbit Conversion (Larger & Centered) -->
+                        <div style="position: relative; width: 100%; height: 240px; margin: 5px 0; display: flex; justify-content: center; align-items: center;">
+                            <!-- AI Engine Node (Centered Large Logo) -->
+                            <div style="position: relative; width: 220px; height: 220px; z-index: 5; display: flex; align-items: center; justify-content: center;">
+                                <!-- Glow Background -->
+                                <div class="ai-hex-glow" style="position: absolute; width: 240px; height: 240px; background: radial-gradient(circle, rgba(79, 70, 229, 0.28) 0%, transparent 70%); animation: hex-pulse-glow 2s infinite alternate; pointer-events: none;"></div>
+                                
+                                <!-- AI Chip & 3D Orbiting Planets SVG -->
+                                <svg width="220" height="220" viewBox="0 0 220 220" style="position: absolute; overflow: visible;">
+                                    <defs>
+                                        <radialGradient id="gradient-center-core" cx="50%" cy="50%" r="50%">
+                                            <stop offset="0%" stop-color="#818cf8" />
+                                            <stop offset="100%" stop-color="#4f46e5" />
+                                        </radialGradient>
+                                    </defs>
+                                    
+                                    <!-- Orbit Lines (Faint dotted tilted ellipses) -->
+                                    <ellipse cx="110" cy="110" rx="75" ry="22.5" fill="none" stroke="rgba(129, 140, 248, 0.22)" stroke-width="1.2" stroke-dasharray="2, 4" transform="rotate(-20 110 110)" />
+                                    <ellipse cx="110" cy="110" rx="90" ry="22.5" fill="none" stroke="rgba(244, 63, 94, 0.22)" stroke-width="1.2" stroke-dasharray="2, 4" transform="rotate(15 110 110)" />
+                                    <ellipse cx="110" cy="110" rx="60" ry="21" fill="none" stroke="rgba(16, 185, 129, 0.22)" stroke-width="1.2" stroke-dasharray="2, 4" transform="rotate(45 110 110)" />
+
+                                    <!-- Floating Fine Particles (Decorative Ambient Drift) -->
+                                    <circle cx="35" cy="55" r="1.5" fill="rgba(129, 140, 248, 0.55)" class="floating-particle-1" />
+                                    <circle cx="185" cy="40" r="1" fill="rgba(129, 140, 248, 0.45)" class="floating-particle-2" />
+                                    <circle cx="45" cy="170" r="2" fill="rgba(79, 70, 229, 0.55)" class="floating-particle-3" />
+                                    <circle cx="175" cy="160" r="1.5" fill="rgba(129, 140, 248, 0.5)" class="floating-particle-4" />
+
+                                    <!-- Revolving Planet-like Spheres -->
+                                    <!-- Planet 1: Blue, Outer Orbit (-20deg tilted), Clockwise -->
+                                    <g class="orbit-container-1" style="transform: rotate(-20deg) scaleY(0.3); transform-origin: 110px 110px;">
+                                        <g class="orbit-rotator-clockwise" style="transform-origin: 110px 110px;">
+                                            <circle cx="110" cy="35" r="5" fill="#60a5fa" style="filter: drop-shadow(0 0 6px #60a5fa);" />
+                                        </g>
+                                    </g>
+                                    
+                                    <!-- Planet 2: Rose, Inner Orbit (15deg tilted), Counter-Clockwise -->
+                                    <g class="orbit-container-2" style="transform: rotate(15deg) scaleY(0.25); transform-origin: 110px 110px;">
+                                        <g class="orbit-rotator-counter-1" style="transform-origin: 110px 110px;">
+                                            <circle cx="110" cy="20" r="4" fill="#f43f5e" style="filter: drop-shadow(0 0 5px #f43f5e);" />
+                                        </g>
+                                    </g>
+                                    
+                                    <!-- Planet 3: Green, Medium Orbit (45deg tilted), Clockwise (Slow) -->
+                                    <g class="orbit-container-3" style="transform: rotate(45deg) scaleY(0.35); transform-origin: 110px 110px;">
+                                        <g class="orbit-rotator-clockwise-slow" style="transform-origin: 110px 110px;">
+                                            <circle cx="110" cy="50" r="4.5" fill="#10b981" style="filter: drop-shadow(0 0 5px #10b981);" />
+                                        </g>
+                                    </g>
+
+                                    <!-- Rotating AI Chip Group (Clockwise, slow, centered at 110,110) -->
+                                    <g class="rotating-chip" style="transform-origin: 110px 110px;">
+                                        <!-- Pins - Top -->
+                                        <line x1="95" y1="75" x2="95" y2="85" stroke="#818cf8" stroke-width="2" stroke-linecap="round" />
+                                        <line x1="110" y1="75" x2="110" y2="85" stroke="#818cf8" stroke-width="2" stroke-linecap="round" />
+                                        <line x1="125" y1="75" x2="125" y2="85" stroke="#818cf8" stroke-width="2" stroke-linecap="round" />
+                                        <!-- Pins - Bottom -->
+                                        <line x1="95" y1="135" x2="95" y2="145" stroke="#818cf8" stroke-width="2" stroke-linecap="round" />
+                                        <line x1="110" y1="135" x2="110" y2="145" stroke="#818cf8" stroke-width="2" stroke-linecap="round" />
+                                        <line x1="125" y1="135" x2="125" y2="145" stroke="#818cf8" stroke-width="2" stroke-linecap="round" />
+                                        <!-- Pins - Left -->
+                                        <line x1="75" y1="95" x2="85" y2="95" stroke="#818cf8" stroke-width="2" stroke-linecap="round" />
+                                        <line x1="75" y1="110" x2="85" y2="110" stroke="#818cf8" stroke-width="2" stroke-linecap="round" />
+                                        <line x1="75" y1="125" x2="85" y2="125" stroke="#818cf8" stroke-width="2" stroke-linecap="round" />
+                                        <!-- Pins - Right -->
+                                        <line x1="135" y1="95" x2="145" y2="95" stroke="#818cf8" stroke-width="2" stroke-linecap="round" />
+                                        <line x1="135" y1="110" x2="145" y2="110" stroke="#818cf8" stroke-width="2" stroke-linecap="round" />
+                                        <line x1="135" y1="125" x2="145" y2="125" stroke="#818cf8" stroke-width="2" stroke-linecap="round" />
+
+                                        <!-- Main Chip body -->
+                                        <rect x="85" y="85" width="50" height="50" rx="8" fill="url(#gradient-center-core)" stroke="#ffffff" stroke-width="2" style="filter: drop-shadow(0 0 10px rgba(79, 70, 229, 0.6));" />
+                                        <!-- Chip Core details -->
+                                        <rect x="95" y="95" width="30" height="30" rx="3" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" />
+                                        <!-- No center white dot -->
+                                    </g>
+                                </svg>
+                                <!-- Central AI Text (Stationary in 3D center) -->
+                                <span style="position: absolute; color: #ffffff; font-size: 20px; font-weight: 800; z-index: 10; font-family: var(--font-heading) !important; pointer-events: none; transform: translateY(-0.5px); text-shadow: 0 0 5px rgba(79,70,229,0.8);">AI</span>
                             </div>
                         </div>
- 
-                        <!-- Text content -->
+
+                        <!-- Completely Restored Original Text -->
                         <div style="text-align: center; width: 100%;">
-                            <div class="flow-hdr" style="font-size: 27px; font-weight: 800; color: #7c3aed !important; margin-bottom: 8px; text-shadow: 0 0 15px rgba(124, 58, 237, 0.1); text-align: center;">AI 輔助轉換</div>
-                            <div style="font-size: 19px; color: #475569; font-weight: 600; line-height: 1.6; padding: 0 10px;">
+                            <div class="flow-hdr" style="font-size: 24px; font-weight: 800; color: var(--text-main); margin-bottom: 8px;">AI 輔助轉換</div>
+                            <div style="font-size: 18px; color: var(--text-muted); font-weight: 600; line-height: 1.5; padding: 0 10px;">
                                 將工程經驗轉換為<br>
-                                <span style="font-weight: 800; color: #7c3aed;">可執行的方法與工具</span>
+                                <span style="font-weight: 800; color: var(--primary);">可執行的方法與工具</span>
                             </div>
                         </div>
                     </div>
  
-                    <!-- Column 3: Factory-Ready (Redesigned to be perfectly symmetric to Column 1) -->
-                    <div class="flow-card" style="position: absolute; left: 870px; top: 170px; width: 350px; height: 420px; background: rgba(2, 132, 199, 0.03) !important; border: 1px solid rgba(2, 132, 199, 0.15) !important; border-radius: 12px; padding: 25px 20px; display: flex; flex-direction: column; align-items: center; text-align: center;">
-                        <div style="font-size: 11px; font-weight: 800; color: var(--primary); background: rgba(2, 132, 199, 0.06); padding: 4px 14px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.08em; border: 1px solid rgba(2, 132, 199, 0.15); margin-bottom: 10px; display: inline-flex; align-items: center; gap: 4px; pointer-events: none;">
-                            <span>Impact</span>
+                    <!-- Column 3: Factory-Ready -->
+                    <div class="flow-card fade-up-item delay-3" style="position: absolute; left: 850px; top: 160px; width: 350px; height: 440px; padding: 25px 20px; display: flex; flex-direction: column; align-items: center; justify-content: space-between; text-align: center; border: 1px solid var(--border-color) !important; background: #ffffff !important;">
+                        <div class="minimal-icon-badge" style="color: #15803d; margin-bottom: 5px;"><i data-lucide="trending-up"></i></div>
+                        <div style="font-size: 11px; font-weight: 800; color: #15803d; background: rgba(21, 128, 61, 0.05); padding: 4px 14px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.08em; border: 1px solid rgba(21, 128, 61, 0.15); margin-bottom: 5px;">
+                            <span>✅ Factory-Ready 流程</span>
                         </div>
-                        <div class="flow-hdr" style="font-size: 25px; font-weight: 800; color: var(--primary) !important; margin-bottom: 20px; text-align: center;">Factory-Ready 數位工具</div>
+                        <div class="flow-hdr" style="font-size: 22px; font-weight: 800; color: var(--text-main); margin-bottom: 10px;">Factory-Ready 數位工具</div>
                         
-                        <div class="flow-bullets-center" style="display: flex; flex-direction: column; gap: 11px; align-items: center; justify-content: center; width: 100%; text-align: center; margin: 0 0 16px 0;">
-                            <div style="font-size: 19px; color: #334155; line-height: 1.4; font-weight: 600; background: rgba(2, 132, 199, 0.05); border: 1px solid rgba(2, 132, 199, 0.12); border-radius: 6px; padding: 8px 16px; width: 95%; box-shadow: inset 0 1px 2px rgba(2,132,199,0.01);">提升執行效率與一致性</div>
-                            <div style="font-size: 19px; color: #334155; line-height: 1.4; font-weight: 600; background: rgba(2, 132, 199, 0.05); border: 1px solid rgba(2, 132, 199, 0.12); border-radius: 6px; padding: 8px 16px; width: 95%; box-shadow: inset 0 1px 2px rgba(2,132,199,0.01);">標準化工程決策</div>
-                            <div style="font-size: 19px; color: #334155; line-height: 1.4; font-weight: 600; background: rgba(2, 132, 199, 0.05); border: 1px solid rgba(2, 132, 199, 0.12); border-radius: 6px; padding: 8px 16px; width: 95%; box-shadow: inset 0 1px 2px rgba(2,132,199,0.01);">降低新人門檻與出錯率</div>
+                        <!-- Redesigned full-width centered list rows with SUCCESS checkmarks -->
+                        <div class="flow-bullets-center" style="display: flex; flex-direction: column; justify-content: center; width: 100%; border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; background: #ffffff; margin-bottom: 15px; text-align: left;">
+                            <div style="font-size: 13.5px; color: #15803d; font-weight: 700; padding: 12px 14px; border-bottom: 1px solid var(--border-color); display: flex; align-items: center; gap: 8px;">
+                                <i data-lucide="check-circle" style="width: 16px !important; height: 16px !important; flex-shrink: 0;"></i>
+                                雲端整合標準流程，數據同步共用
+                            </div>
+                            <div style="font-size: 13.5px; color: #15803d; font-weight: 700; padding: 12px 14px; border-bottom: 1px solid var(--border-color); display: flex; align-items: center; gap: 8px;">
+                                <i data-lucide="check-circle" style="width: 16px !important; height: 16px !important; flex-shrink: 0;"></i>
+                                自動化特徵提取與反推，規格零失誤
+                            </div>
+                            <div style="font-size: 13.5px; color: #15803d; font-weight: 700; padding: 12px 14px; display: flex; align-items: center; gap: 8px;">
+                                <i data-lucide="check-circle" style="width: 16px !important; height: 16px !important; flex-shrink: 0;"></i>
+                                直接串接工廠端生產參數，保障良率
+                            </div>
                         </div>
                         
-                        <!-- Centered bottom diagram illustration for symmetric balance -->
-                        <div style="flex-grow: 1; display: flex; align-items: center; justify-content: center; width: 100%;">
-                            <img src="assets/images/image15.png" alt="Flow Diagram" style="height: 100px; max-width: 100%; object-fit: contain; z-index: 2;">
+                        <!-- Factory Ready Dashboard Grid (Green style, matching Excel grid on left) -->
+                        <div class="excel-graphic-mockup" style="width: 160px; height: 70px; border: 1px dashed rgba(21, 128, 61, 0.3); border-radius: 6px; padding: 6px; display: flex; flex-direction: column; gap: 4px; background: rgba(21, 128, 61, 0.01); text-align: left;">
+                            <div style="display: flex; gap: 4px; border-bottom: 1px solid rgba(21, 128, 61, 0.15); padding-bottom: 4px; align-items: center;">
+                                <i data-lucide="layout-dashboard" style="width: 12px; height: 12px; color: #15803d;"></i>
+                                <span style="font-size: 9px; font-weight: 700; color: #15803d; letter-spacing: 0.05em;">FACTORY_TOOL.EXE</span>
+                            </div>
+                            <div style="display: flex; gap: 6px; align-items: center; height: 100%;">
+                                <!-- Line Chart SVG Mockup -->
+                                <svg width="60" height="30" viewBox="0 0 60 30" fill="none">
+                                    <path d="M5 25L15 12L25 18L35 6L45 10L55 3" stroke="#15803d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <circle cx="35" cy="6" r="2.5" fill="#15803d"/>
+                                    <line x1="5" y1="28" x2="55" y2="28" stroke="rgba(21, 128, 61, 0.2)" stroke-width="1"/>
+                                </svg>
+                                <!-- Parameters Mockup -->
+                                <div style="display: flex; flex-direction: column; gap: 3px; flex-grow: 1;">
+                                    <div style="width: 100%; height: 5px; background: rgba(21, 128, 61, 0.15); border-radius: 2px;"></div>
+                                    <div style="width: 80%; height: 5px; background: rgba(21, 128, 61, 0.08); border-radius: 2px;"></div>
+                                    <div style="width: 90%; height: 5px; background: rgba(21, 128, 61, 0.08); border-radius: 2px;"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -496,50 +698,59 @@
             
             <!-- SLIDE 8 -->
             <section class="slide" data-slide-index="8">
-                <div class="slide-stage" style="background: radial-gradient(circle at 50% 50%, #ffffff 0%, #f8fafc 100%); border-radius: 4px;">
-                    <div class="slide-title-standard">Acoustic System: AI-Assisted Acoustic Development System</div>
+                <div class="slide-stage" style="background: #ffffff;">
+                    <div class="slide-title-standard fade-up-item">Acoustic System: AI-Assisted Acoustic Development System</div>
                     
-                    <!-- Column 1: Module 1 -->
-                    <div class="sys-col" style="left: 60px; top: 190px; width: 350px; height: 410px; display: flex; flex-direction: column;">
-                        <div class="sys-col-img-wrapper" style="width: 100%; height: 180px;">
+                    <!-- Column 1: Module 1 (Reframed original software screenshot, no window mockups) -->
+                    <div class="sys-col fade-up-item delay-1" style="left: 80px; top: 160px; width: 350px; height: 430px; display: flex; flex-direction: column; padding: 20px; justify-content: space-between; border: 1px solid var(--border-color) !important; background: #ffffff !important;">
+                        <div class="sys-col-img-wrapper img-hover-zoom" style="width: 100%; height: 180px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color);">
                             <img src="assets/images/image18.png" alt="Software View 1" style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
-                        <div class="sys-module-card" style="position: static; width: 100%;">
-                            <div class="sys-module-title">指標化系統分析</div>
-                            <div class="sys-module-desc">
+                        <div class="sys-module-card" style="position: static; width: 100%; padding-top: 25px; padding-left: 5px; padding-right: 5px; flex-grow: 1; display: flex; flex-direction: column; justify-content: flex-start;">
+                            <div class="sys-module-title" style="border-left: 3px solid var(--primary); padding-left: 8px; margin-bottom: 12px; font-size: 22px; font-weight: 800; display: flex; align-items: center; gap: 8px;">
+                                <i data-lucide="layout-dashboard" style="width: 22px !important; height: 22px !important; color: var(--primary);"></i>
+                                指標化系統分析
+                            </div>
+                            <div class="sys-module-desc" style="font-size: 15.5px; line-height: 1.6;">
                                 即時計算 3D 箱體駐波 (Box Resonance) 與系統頻率，輔助早期決策。
                             </div>
                         </div>
                     </div>
-
-                    <!-- Column 2: Module 2 -->
-                    <div class="sys-col" style="left: 465px; top: 190px; width: 350px; height: 410px; display: flex; flex-direction: column;">
-                        <div class="sys-col-img-wrapper" style="width: 100%; height: 180px;">
+ 
+                    <!-- Column 2: Module 2 (Reframed original software screenshot, no window mockups) -->
+                    <div class="sys-col fade-up-item delay-2" style="left: 465px; top: 160px; width: 350px; height: 430px; display: flex; flex-direction: column; padding: 20px; justify-content: space-between; border: 1px solid var(--border-color) !important; background: #ffffff !important;">
+                        <div class="sys-col-img-wrapper img-hover-zoom" style="width: 100%; height: 180px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color);">
                             <img src="assets/images/image19.png" alt="Software View 2" style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
-                        <div class="sys-module-card" style="position: static; width: 100%;">
-                            <div class="sys-module-title">音圈規格設計</div>
-                            <div class="sys-module-desc">
+                        <div class="sys-module-card" style="position: static; width: 100%; padding-top: 25px; padding-left: 5px; padding-right: 5px; flex-grow: 1; display: flex; flex-direction: column; justify-content: flex-start;">
+                            <div class="sys-module-title" style="border-left: 3px solid var(--primary); padding-left: 8px; margin-bottom: 12px; font-size: 22px; font-weight: 800; display: flex; align-items: center; gap: 8px;">
+                                <i data-lucide="target" style="width: 22px !important; height: 22px !important; color: var(--primary);"></i>
+                                音圈規格設計
+                            </div>
+                            <div class="sys-module-desc" style="font-size: 15.5px; line-height: 1.6;">
                                 精密線重、磁通反推計算，確保單體設計精確。
                             </div>
                         </div>
                     </div>
-
-                    <!-- Column 3: Module 3 -->
-                    <div class="sys-col" style="left: 870px; top: 190px; width: 350px; height: 410px; display: flex; flex-direction: column;">
-                        <div class="sys-col-img-wrapper" style="width: 100%; height: 180px;">
+ 
+                    <!-- Column 3: Module 3 (Reframed original software screenshot, no window mockups) -->
+                    <div class="sys-col fade-up-item delay-3" style="left: 850px; top: 160px; width: 350px; height: 430px; display: flex; flex-direction: column; padding: 20px; justify-content: space-between; border: 1px solid var(--border-color) !important; background: #ffffff !important;">
+                        <div class="sys-col-img-wrapper img-hover-zoom" style="width: 100%; height: 180px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color);">
                             <img src="assets/images/image20.png" alt="Software View 3" style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
-                        <div class="sys-module-card" style="position: static; width: 100%;">
-                            <div class="sys-module-title">SPL 頻率響應預測</div>
-                            <div class="sys-module-desc">
+                        <div class="sys-module-card" style="position: static; width: 100%; padding-top: 25px; padding-left: 5px; padding-right: 5px; flex-grow: 1; display: flex; flex-direction: column; justify-content: flex-start;">
+                            <div class="sys-module-title" style="border-left: 3px solid var(--primary); padding-left: 8px; margin-bottom: 12px; font-size: 22px; font-weight: 800; display: flex; align-items: center; gap: 8px;">
+                                <i data-lucide="activity" style="width: 22px !important; height: 22px !important; color: var(--primary);"></i>
+                                SPL 頻率響應預測
+                            </div>
+                            <div class="sys-module-desc" style="font-size: 15.5px; line-height: 1.6;">
                                 即時預估實用音壓，取代傳統繁瑣的 Excel 人工推算。
                             </div>
                         </div>
                     </div>
-
+ 
                     <!-- Bottom Summary Banner -->
-                    <div class="system-full-summary-card" style="left: 80px; top: 635px; width: 1120px; height: 48px; font-size: 16px; font-weight: 700; color: #475569; text-align: center; display: flex; align-items: center; justify-content: center; z-index: 10; background: transparent;">
+                    <div class="fade-up-item delay-4" style="position: absolute; left: 80px; top: 595px; width: 1120px; height: 50px; font-size: 16px; font-weight: 700; color: var(--text-main); display: flex; align-items: center; justify-content: center; border-radius: 15px; border: 1px solid var(--border-color); background: #ffffff;">
                         結合聲學、機構與模擬，建立可複製的工程流程，推動研發從經驗導向邁向數據導向。
                     </div>
                 </div>

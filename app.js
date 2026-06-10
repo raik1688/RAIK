@@ -40,6 +40,30 @@ document.addEventListener('DOMContentLoaded', () => {
     const hudControls = document.getElementById('hudControls');
     const navDots = document.getElementById('navDots');
 
+    // Canvas variables and state (declared at top to avoid Temporal Dead Zone ReferenceError)
+    const canvas1 = document.getElementById('slide1Canvas');
+    let ctx1 = null;
+    let canvasAnimationId1 = null;
+    let particles1 = [];
+    const maxParticles1 = 30;
+
+    const canvas = document.getElementById('slide9Canvas');
+    let ctx = null;
+    let canvasAnimationId = null;
+    let particles = [];
+    const maxParticles = 45;
+
+    // Slide 1 Orbit variables and state (declared at top to avoid Temporal Dead Zone ReferenceError)
+    const rx = 270;
+    const ry = 120;
+    const tiltAngle = -10 * Math.PI / 180; // -10 degrees in radians
+    const cosTilt = Math.cos(tiltAngle);
+    const sinTilt = Math.sin(tiltAngle);
+    let orbitAnimationId = null;
+    let orbitAngle = 0;
+    const centerX = 330; 
+    const centerY = 315;
+
     // 4. Auto-scaling 16:9 Stage Layout
     function resizeStage() {
         const stages = document.querySelectorAll('.slide-stage');
@@ -61,8 +85,10 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', resizeStage);
     resizeStage(); // Run initially
 
-    // Initialize slide active states
+    // Make Slide 1 active initially
     slides[0].classList.add('active');
+    initSlide1Canvas(); // Run Slide 1 canvas particles initially
+    startOrbitAnimation(); // Run Slide 1 orbits initially!
 
     // 5. Slide Glide Navigation Function
     function goToSlide(index) {
@@ -104,6 +130,15 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             document.body.classList.remove('slide-9-active');
             stopSlide9Canvas();
+        }
+
+        // Manage Canvas Particles and Orbits for Slide 1
+        if (currentSlide === 0) {
+            initSlide1Canvas();
+            startOrbitAnimation();
+        } else {
+            stopSlide1Canvas();
+            stopOrbitAnimation();
         }
 
         // Reset transition lock
@@ -301,13 +336,142 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('touchstart', showHUD);
     showHUD();
 
-    // 9. Slide 9: Canvas Sci-Fi Particle Network Effect
-    const canvas = document.getElementById('slide9Canvas');
-    let ctx = null;
-    let canvasAnimationId = null;
-    let particles = [];
-    const maxParticles = 45;
+    // 9. Slide 1: Canvas Sci-Fi Particle Network Effect (Soft Blue)
+    function initSlide1Canvas() {
+        if (!canvas1) return;
+        ctx1 = canvas1.getContext('2d');
+        
+        // Match canvas to slide stage actual dimensions
+        const stage = canvas1.closest('.slide-stage');
+        canvas1.width = stage.clientWidth;
+        canvas1.height = stage.clientHeight;
+        
+        particles1 = [];
+        for (let i = 0; i < maxParticles1; i++) {
+            particles1.push({
+                x: Math.random() * canvas1.width,
+                y: Math.random() * canvas1.height,
+                vx: (Math.random() - 0.5) * 0.25,
+                vy: (Math.random() - 0.25) * 0.25, // drift upwards slightly
+                radius: Math.random() * 2.5 + 1
+            });
+        }
+        
+        if (canvasAnimationId1) cancelAnimationFrame(canvasAnimationId1);
+        animateParticles1();
+    }
 
+    function stopSlide1Canvas() {
+        if (canvasAnimationId1) {
+            cancelAnimationFrame(canvasAnimationId1);
+            canvasAnimationId1 = null;
+        }
+    }
+
+    function animateParticles1() {
+        if (!ctx1) return;
+        ctx1.clearRect(0, 0, canvas1.width, canvas1.height);
+        
+        // Draw particle nodes
+        particles1.forEach(p => {
+            p.x += p.vx;
+            p.y += p.vy;
+            
+            // Bounce off edges
+            if (p.x < 0 || p.x > canvas1.width) p.vx *= -1;
+            if (p.y < 0 || p.y > canvas1.height) p.vy *= -1;
+            
+            ctx1.beginPath();
+            ctx1.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+            ctx1.fillStyle = 'rgba(79, 70, 229, 0.25)';
+            ctx1.fill();
+        });
+        
+        // Draw connection lines
+        ctx1.lineWidth = 0.5;
+        for (let i = 0; i < particles1.length; i++) {
+            for (let j = i + 1; j < particles1.length; j++) {
+                const p1 = particles1[i];
+                const p2 = particles1[j];
+                const dx = p1.x - p2.x;
+                const dy = p1.y - p2.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                
+                if (dist < 130) {
+                    const alpha = (1 - (dist / 130)) * 0.12;
+                    ctx1.strokeStyle = `rgba(79, 70, 229, ${alpha})`;
+                    ctx1.beginPath();
+                    ctx1.moveTo(p1.x, p1.y);
+                    ctx1.lineTo(p2.x, p2.y);
+                    ctx1.stroke();
+                }
+            }
+        }
+        
+        canvasAnimationId1 = requestAnimationFrame(animateParticles1);
+    }
+
+    // 10. Slide 1 Dynamic Planetary Orbiting Nodes Animation (Single Tilted Orbit Ring)
+    function updateOrbits(angle) {
+        const orbitNodes = document.querySelectorAll('.slide[data-slide-index="1"] .slide1-orbit-node');
+        const numNodes = orbitNodes.length;
+        if (numNodes === 0) return;
+        
+        orbitNodes.forEach((node, idx) => {
+            // Space nodes evenly by 360 / numNodes degrees
+            const initialAngle = idx * (2 * Math.PI / numNodes);
+            const currentAngle = angle + initialAngle;
+            
+            // Calculate coordinates on the standard ellipse
+            const xVal = rx * Math.cos(currentAngle);
+            const yVal = ry * Math.sin(currentAngle);
+            
+            // Rotate the coordinates by tiltAngle
+            const dx = xVal * cosTilt - yVal * sinTilt;
+            const dy = xVal * sinTilt + yVal * cosTilt;
+            
+            // 3D scale and opacity based on the sine of the angle (foreground vs background)
+            const sinVal = Math.sin(currentAngle);
+            const scale = 0.925 + 0.175 * sinVal; // scale between 0.75 and 1.10
+            const opacity = 0.75 + 0.25 * sinVal; // opacity between 0.50 and 1.00
+            
+            // zIndex: 1 for background (behind laptop), 5 for foreground
+            const zIndex = sinVal < 0 ? 1 : 5;
+            
+            // Calculate pixel offsets from center of container (accounting for half-width/height of node)
+            const tx = centerX + dx - 34;
+            const ty = centerY + dy - 55;
+            
+            // Apply GPU-accelerated transform: translate3d and scale
+            node.style.transform = `translate3d(${tx.toFixed(1)}px, ${ty.toFixed(1)}px, 0) scale(${scale.toFixed(3)})`;
+            node.style.opacity = opacity.toFixed(3);
+            node.style.zIndex = zIndex;
+        });
+    }
+
+    function animateOrbits() {
+        orbitAngle += 0.005; // Smooth incremental angle change per frame
+        updateOrbits(orbitAngle);
+        orbitAnimationId = requestAnimationFrame(animateOrbits);
+    }
+
+    function startOrbitAnimation() {
+        if (!orbitAnimationId) {
+            animateOrbits();
+        }
+    }
+
+    function stopOrbitAnimation() {
+        if (orbitAnimationId) {
+            cancelAnimationFrame(orbitAnimationId);
+            orbitAnimationId = null;
+        }
+    }
+
+    // Initialize static positions at startup
+    updateOrbits(0);
+
+    // 11. Slide 9: Canvas Sci-Fi Particle Network Effect
     function initSlide9Canvas() {
         if (!canvas) return;
         ctx = canvas.getContext('2d');
@@ -380,5 +544,61 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         canvasAnimationId = requestAnimationFrame(animateParticles);
+    }
+
+    // 11. Visitor Location Tracker (Google Sheets Web App integration)
+    // Please replace with your Google Apps Script Web App URL to enable writing to Google Sheet
+    const TRACKING_URL = "https://script.google.com/macros/s/AKfycbwd4xjNhwhasku3Y_5IefEQnPZMNCwg5b3R2T-8etiwnciVXIz1THTA6hGvxiKOXXQN/exec"; 
+
+    function trackVisitor() {
+        if (!TRACKING_URL) {
+            console.log("Visitor tracking is active but TRACKING_URL is empty. Set your Google Apps Script URL in app.js to record visits.");
+            return;
+        }
+        
+        try {
+            // Fetch public IP and geographic data from freeipapi.com
+            fetch("https://freeipapi.com/api/json")
+                .then(res => {
+                    if (!res.ok) throw new Error("Network response was not ok");
+                    return res.json();
+                })
+                .then(data => {
+                    const payload = {
+                        ip: data.ipAddress || "Unknown",
+                        country: data.countryName || "Unknown",
+                        region: data.regionName || "Unknown",
+                        city: data.cityName || "Unknown",
+                        org: data.asnOrganization || data.isp || "Unknown", // Chunghwa Telecom, etc.
+                        latitude: data.latitude || "Unknown",
+                        longitude: data.longitude || "Unknown",
+                        userAgent: navigator.userAgent,
+                        referer: document.referrer || "Direct"
+                    };
+                    
+                    // POST visitor data to the Google Apps Script Web App
+                    return fetch(TRACKING_URL, {
+                        method: "POST",
+                        mode: "no-cors",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(payload)
+                    });
+                })
+                .then(() => {
+                    console.log("Visitor information recorded successfully.");
+                })
+                .catch(err => {
+                    console.warn("Visitor tracking failed or API limits exceeded:", err.message);
+                });
+        } catch (e) {
+            console.warn("Visitor tracking failed synchronously:", e.message);
+        }
+    }
+
+    // Trigger Visitor Tracking at the very end of DOMContentLoaded to prevent any loading blockages
+    try {
+        trackVisitor();
+    } catch (e) {
+        console.warn("Failed to initiate visitor tracking:", e.message);
     }
 });
